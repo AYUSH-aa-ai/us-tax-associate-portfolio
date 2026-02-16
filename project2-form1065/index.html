@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Form 1065 & Schedule K-1 Analyzer – Input partnership financials and auto-generate K-1 allocations for each partner.">
+    <title>Project 2: Form 1065 & Schedule K-1 Analyzer</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="bg-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">📋</div>
+                <span>Form 1065<span style="color:var(--accent-cyan)">Analyzer</span></span>
+            </a>
+            <nav>
+                <a href="../index.html">← Portfolio</a>
+                <a href="../project1-compliance/index.html">Compliance</a>
+                <a href="../project3-nexus/index.html">Nexus</a>
+                <a href="../project4-allocation/index.html">Allocation</a>
+                <a href="../project5-workflow/index.html">Workflow</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section container">
+            <div class="page-header animate-fade-in-up">
+                <div class="subtitle-pill">📋 Project 2 of 5</div>
+                <h1>Form 1065 & Schedule K-1 <span class="gradient-text">Analyzer</span></h1>
+                <p class="page-desc">Input partnership financial data and auto-generate Schedule K-1 allocations for
+                    each partner. Covers ordinary income, rental income, interest, dividends, capital gains, and more.
+                </p>
+            </div>
+        </section>
+
+        <!-- Partnership Info -->
+        <section class="section container">
+            <div class="grid-2">
+                <!-- Left: Input Form -->
+                <div class="glass-card form-panel animate-fade-in-up delay-1">
+                    <h3 style="margin-bottom:20px;">🏢 Partnership Information</h3>
+                    <div class="form-group">
+                        <label>Partnership Name</label>
+                        <input type="text" class="form-control" id="partnershipName" value="Alpha Ventures LLP"
+                            placeholder="Enter partnership name">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>EIN</label>
+                            <input type="text" class="form-control" id="ein" value="12-3456789"
+                                placeholder="XX-XXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Tax Year</label>
+                            <select class="form-control" id="taxYear">
+                                <option value="2025" selected>2025</option>
+                                <option value="2024">2024</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Number of Partners</label>
+                        <input type="number" class="form-control" id="numPartners" value="3" min="1" max="10">
+                    </div>
+                    <button class="btn btn-primary" id="setupPartnersBtn" style="width:100%;justify-content:center;">Set
+                        Up Partners →</button>
+                </div>
+
+                <!-- Right: Partners Setup -->
+                <div class="glass-card form-panel animate-fade-in-up delay-2" id="partnersPanel">
+                    <h3 style="margin-bottom:20px;">👥 Partner Details</h3>
+                    <div id="partnerInputs"></div>
+                    <p class="form-hint" id="ratioHint">Ownership percentages must total 100%</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Income & Deductions Input -->
+        <section class="section container">
+            <div class="section-header">
+                <h2>💰 Partnership <span class="gradient-text">Financials</span></h2>
+                <p>Enter the partnership's income, deductions, and credits for the tax year.</p>
+            </div>
+
+            <div class="grid-2">
+                <!-- Income -->
+                <div class="glass-card form-panel animate-fade-in-up">
+                    <h3 class="panel-title income-title">📈 Income Items</h3>
+                    <div class="form-group">
+                        <label>Gross Receipts / Sales</label>
+                        <input type="number" class="form-control income-input" id="grossReceipts" value="2500000"
+                            data-field="grossReceipts">
+                    </div>
+                    <div class="form-group">
+                        <label>Cost of Goods Sold</label>
+                        <input type="number" class="form-control income-input" id="cogs" value="800000"
+                            data-field="cogs">
+                    </div>
+                    <div class="form-group">
+                        <label>Rental Real Estate Income</label>
+                        <input type="number" class="form-control income-input" id="rentalIncome" value="120000"
+                            data-field="rentalIncome">
+                    </div>
+                    <div class="form-group">
+                        <label>Interest Income</label>
+                        <input type="number" class="form-control income-input" id="interestIncome" value="35000"
+                            data-field="interestIncome">
+                    </div>
+                    <div class="form-group">
+                        <label>Dividend Income</label>
+                        <input type="number" class="form-control income-input" id="dividendIncome" value="22000"
+                            data-field="dividendIncome">
+                    </div>
+                    <div class="form-group">
+                        <label>Net Short-Term Capital Gain</label>
+                        <input type="number" class="form-control income-input" id="stcg" value="15000"
+                            data-field="stcg">
+                    </div>
+                    <div class="form-group">
+                        <label>Net Long-Term Capital Gain</label>
+                        <input type="number" class="form-control income-input" id="ltcg" value="45000"
+                            data-field="ltcg">
+                    </div>
+                    <div class="form-group">
+                        <label>Section 1231 Gain (Net)</label>
+                        <input type="number" class="form-control income-input" id="sec1231" value="18000"
+                            data-field="sec1231">
+                    </div>
+                    <div class="form-group">
+                        <label>Other Income</label>
+                        <input type="number" class="form-control income-input" id="otherIncome" value="10000"
+                            data-field="otherIncome">
+                    </div>
+                </div>
+
+                <!-- Deductions -->
+                <div class="glass-card form-panel animate-fade-in-up delay-1">
+                    <h3 class="panel-title deduction-title">📉 Deductions</h3>
+                    <div class="form-group">
+                        <label>Salaries & Wages</label>
+                        <input type="number" class="form-control deduction-input" id="salaries" value="450000"
+                            data-field="salaries">
+                    </div>
+                    <div class="form-group">
+                        <label>Guaranteed Payments to Partners</label>
+                        <input type="number" class="form-control deduction-input" id="guaranteedPayments" value="180000"
+                            data-field="guaranteedPayments">
+                    </div>
+                    <div class="form-group">
+                        <label>Rent Expense</label>
+                        <input type="number" class="form-control deduction-input" id="rentExpense" value="96000"
+                            data-field="rentExpense">
+                    </div>
+                    <div class="form-group">
+                        <label>Depreciation (Section 179 + MACRS)</label>
+                        <input type="number" class="form-control deduction-input" id="depreciation" value="65000"
+                            data-field="depreciation">
+                    </div>
+                    <div class="form-group">
+                        <label>Interest Expense</label>
+                        <input type="number" class="form-control deduction-input" id="interestExpense" value="28000"
+                            data-field="interestExpense">
+                    </div>
+                    <div class="form-group">
+                        <label>Taxes & Licenses</label>
+                        <input type="number" class="form-control deduction-input" id="taxesLicenses" value="42000"
+                            data-field="taxesLicenses">
+                    </div>
+                    <div class="form-group">
+                        <label>Charitable Contributions</label>
+                        <input type="number" class="form-control deduction-input" id="charitable" value="25000"
+                            data-field="charitable">
+                    </div>
+                    <div class="form-group">
+                        <label>Other Deductions</label>
+                        <input type="number" class="form-control deduction-input" id="otherDeductions" value="55000"
+                            data-field="otherDeductions">
+                    </div>
+                    <div class="form-group">
+                        <label>Foreign Tax Credit</label>
+                        <input type="number" class="form-control deduction-input" id="foreignTaxCredit" value="8000"
+                            data-field="foreignTaxCredit">
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align:center;margin-top:32px;">
+                <button class="btn btn-primary" id="generateBtn" style="padding:16px 40px;font-size:1.05rem;">
+                    ⚡ Generate Schedule K-1 Allocations
+                </button>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="section container" id="resultsSection" style="display:none;">
+            <div class="section-header">
+                <h2>📊 Schedule K-1 <span class="gradient-text">Results</span></h2>
+                <p>Auto-generated K-1 allocations based on each partner's ownership percentage.</p>
+            </div>
+
+            <!-- Summary Stats -->
+            <div class="grid-4 animate-fade-in-up" id="summaryStats"></div>
+
+            <!-- Charts -->
+            <div class="grid-2" style="margin-top:32px;">
+                <div class="glass-card chart-panel animate-fade-in-up delay-1">
+                    <h4 style="margin-bottom:16px;">Income Breakdown</h4>
+                    <canvas id="incomeChart"></canvas>
+                </div>
+                <div class="glass-card chart-panel animate-fade-in-up delay-2">
+                    <h4 style="margin-bottom:16px;">Allocation by Partner</h4>
+                    <canvas id="allocationChart"></canvas>
+                </div>
+            </div>
+
+            <!-- K-1 Cards -->
+            <div id="k1Cards" style="margin-top:32px;"></div>
+
+            <!-- Detailed Table -->
+            <div class="glass-card" style="margin-top:32px;padding:24px;">
+                <h4 style="margin-bottom:16px;">📑 Detailed K-1 Line Items</h4>
+                <div class="table-wrapper">
+                    <table id="k1Table">
+                        <thead>
+                            <tr id="k1TableHead"></tr>
+                        </thead>
+                        <tbody id="k1TableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Project 2 of 5 | <span class="brand">Form 1065 & Schedule K-1 Analyzer</span> | BDO RISE – LLP Team</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

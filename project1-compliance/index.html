@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="US LLP Tax Compliance Dashboard – Track IRS filing obligations, deadlines, penalties, and compliance status for partnerships.">
+    <title>Project 1: US LLP Tax Compliance Dashboard</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">🛡️</div>
+                <span>Compliance<span style="color:var(--accent-blue)">Dashboard</span></span>
+            </a>
+            <nav>
+                <a href="../index.html">← Portfolio</a>
+                <a href="../project2-form1065/index.html">Form 1065</a>
+                <a href="../project3-nexus/index.html">Nexus</a>
+                <a href="../project4-allocation/index.html">Allocation</a>
+                <a href="../project5-workflow/index.html">Workflow</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Header -->
+        <section class="section container">
+            <div class="page-header animate-fade-in-up">
+                <div class="subtitle-pill">🛡️ Project 1 of 5</div>
+                <h1>US LLP Tax <span class="gradient-text">Compliance Dashboard</span></h1>
+                <p class="page-desc">Track all IRS compliance requirements, filing deadlines, penalty provisions, and
+                    filing status for US Limited Liability Partnerships.</p>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="grid-4 stats-row animate-fade-in-up delay-1">
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(16,185,129,0.15);">✅</div>
+                    <div class="stat-value" style="color:var(--accent-emerald);" id="completedCount">0</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(245,158,11,0.15);">⏳</div>
+                    <div class="stat-value" style="color:var(--accent-amber);" id="pendingCount">0</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(244,63,94,0.15);">⚠️</div>
+                    <div class="stat-value" style="color:var(--accent-rose);" id="overdueCount">0</div>
+                    <div class="stat-label">Overdue</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(59,130,246,0.15);">📊</div>
+                    <div class="stat-value" style="color:var(--accent-blue);" id="complianceRate">0%</div>
+                    <div class="stat-label">Compliance Rate</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compliance Progress -->
+        <section class="section container">
+            <div class="section-header">
+                <h2>📅 Filing Progress – <span class="gradient-text">Tax Year 2025</span></h2>
+                <p>Overall compliance progress for the current tax year.</p>
+            </div>
+            <div class="glass-card progress-section animate-fade-in-up delay-2">
+                <div class="progress-header">
+                    <span>Overall Compliance</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar large">
+                    <div class="fill" id="progressFill" style="width:0%;background:var(--gradient-main);"></div>
+                </div>
+                <div class="progress-milestones">
+                    <div class="milestone" data-step="1">
+                        <div class="milestone-dot active"></div>
+                        <span>EIN Verified</span>
+                    </div>
+                    <div class="milestone" data-step="2">
+                        <div class="milestone-dot active"></div>
+                        <span>Documents Collected</span>
+                    </div>
+                    <div class="milestone" data-step="3">
+                        <div class="milestone-dot active"></div>
+                        <span>Form 1065 Drafted</span>
+                    </div>
+                    <div class="milestone" data-step="4">
+                        <div class="milestone-dot"></div>
+                        <span>K-1s Generated</span>
+                    </div>
+                    <div class="milestone" data-step="5">
+                        <div class="milestone-dot"></div>
+                        <span>Filed with IRS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabs: Obligations, Deadlines, Penalties -->
+        <section class="section container">
+            <div class="tabs animate-fade-in-up delay-2">
+                <button class="tab active" data-panel="obligations">📑 Filing Obligations</button>
+                <button class="tab" data-panel="deadlines">📅 Key Deadlines</button>
+                <button class="tab" data-panel="penalties">⚠️ Penalty Guide</button>
+                <button class="tab" data-panel="checklist">✅ Compliance Checklist</button>
+            </div>
+
+            <!-- Panel: Filing Obligations -->
+            <div class="tab-panel" id="obligations" style="display:block;">
+                <div class="table-wrapper glass-card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Form / Filing</th>
+                                <th>Description</th>
+                                <th>Frequency</th>
+                                <th>Due Date (TY 2025)</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="obligationsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Panel: Key Deadlines -->
+            <div class="tab-panel" id="deadlines" style="display:none;">
+                <div class="timeline" id="deadlineTimeline"></div>
+            </div>
+
+            <!-- Panel: Penalties -->
+            <div class="tab-panel" id="penalties" style="display:none;">
+                <div class="grid-2">
+                    <div class="penalty-card glass-card" id="penaltyCards"></div>
+                </div>
+                <div id="penaltyGrid"></div>
+            </div>
+
+            <!-- Panel: Checklist -->
+            <div class="tab-panel" id="checklist" style="display:none;">
+                <div class="glass-card checklist-container" id="checklistContainer"></div>
+            </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="section container">
+            <div class="section-header">
+                <h2>📚 Quick <span class="gradient-text">Reference</span></h2>
+                <p>Essential IRS resources and references for LLP compliance.</p>
+            </div>
+            <div class="grid-3">
+                <div class="glass-card ref-card scroll-reveal">
+                    <div class="ref-icon">📖</div>
+                    <h4>IRC §6031</h4>
+                    <p>Requires every partnership to file Form 1065 for each taxable year showing income, deductions,
+                        and other required information.</p>
+                </div>
+                <div class="glass-card ref-card scroll-reveal">
+                    <div class="ref-icon">📖</div>
+                    <h4>IRC §6698</h4>
+                    <p>Failure to file partnership returns: penalty of $220/partner/month (2025), up to 12 months.
+                        Applies to Form 1065.</p>
+                </div>
+                <div class="glass-card ref-card scroll-reveal">
+                    <div class="ref-icon">📖</div>
+                    <h4>IRC §704(b)</h4>
+                    <p>Governs partner's distributive share of income, gain, loss, deductions. Allocations must have
+                        substantial economic effect.</p>
+                </div>
+                <div class="glass-card ref-card scroll-reveal">
+                    <div class="ref-icon">📖</div>
+                    <h4>Rev. Proc. 2024-40</h4>
+                    <p>Annual inflation adjustments for tax year 2025 – affects penalty amounts, standard deduction, and
+                        other thresholds.</p>
+                </div>
+                <div class="glass-card ref-card scroll-reveal">
+                    <div class="ref-icon">📖</div>
+                    <h4>Form 7004</h4>
+                    <p>Application for Automatic Extension of Time – grants 6-month extension for Form 1065 filing
+                        (extends to September 15).</p>
+                </div>
+                <div class="glass-card ref-card scroll-reveal">
+                    <div class="ref-icon">📖</div>
+                    <h4>Schedule K-1 (1065)</h4>
+                    <p>Each partner's share of partnership income, deductions, credits. Due date aligns with Form 1065
+                        filing deadline.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Project 1 of 5 | <span class="brand">US LLP Tax Compliance Dashboard</span> | BDO RISE – LLP Team</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

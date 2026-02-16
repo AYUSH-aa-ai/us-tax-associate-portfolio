@@ -1,0 +1,208 @@
+/* ===== Project 4: Income Allocation Calculator ===== */
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.subtitle-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.page-desc {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 640px;
+    margin: 12px auto 0;
+    line-height: 1.7;
+}
+
+.form-panel {
+    padding: 28px;
+}
+
+.panel-title {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.form-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Partner config */
+.partner-config-row {
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    margin-bottom: 12px;
+}
+
+.partner-config-row .pc-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.partner-config-row .pc-header .pc-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.pc-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.pc-fields label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+    display: block;
+}
+
+.pc-fields input {
+    font-size: 0.88rem;
+}
+
+/* Chart panel */
+.chart-panel {
+    padding: 28px;
+}
+
+.chart-panel h4 {
+    margin-bottom: 16px;
+}
+
+/* Partner result cards */
+.partner-result-card {
+    padding: 28px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+}
+
+.partner-result-card:nth-child(1) {
+    border-left-color: var(--accent-blue);
+}
+
+.partner-result-card:nth-child(2) {
+    border-left-color: var(--accent-cyan);
+}
+
+.partner-result-card:nth-child(3) {
+    border-left-color: var(--accent-purple);
+}
+
+.partner-result-card:nth-child(4) {
+    border-left-color: var(--accent-emerald);
+}
+
+.partner-result-card:nth-child(5) {
+    border-left-color: var(--accent-amber);
+}
+
+.prc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.prc-header h3 {
+    font-size: 1.15rem;
+}
+
+.prc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+}
+
+.prc-item {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.prc-item .prc-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.prc-item .prc-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.prc-item .prc-value.positive {
+    color: var(--accent-emerald);
+}
+
+.prc-item .prc-value.negative {
+    color: var(--accent-rose);
+}
+
+/* Summary stat */
+.summary-stat {
+    padding: 20px;
+    text-align: center;
+}
+
+.summary-stat .ss-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.summary-stat .ss-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* Reference cards */
+.ref-card {
+    padding: 24px;
+}
+
+.ref-card h4 {
+    color: var(--accent-amber);
+    margin-bottom: 8px;
+}
+
+.ref-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .pc-fields {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .prc-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

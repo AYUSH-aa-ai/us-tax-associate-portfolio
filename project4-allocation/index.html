@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Partnership Income Allocation Calculator – Allocate income, deductions, credits among partners with visual charts.">
+    <title>Project 4: Partnership Income Allocation Calculator</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="bg-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon" style="background:var(--gradient-warm);">📐</div>
+                <span>Income<span style="color:var(--accent-amber);">Allocator</span></span>
+            </a>
+            <nav>
+                <a href="../index.html">← Portfolio</a>
+                <a href="../project1-compliance/index.html">Compliance</a>
+                <a href="../project2-form1065/index.html">Form 1065</a>
+                <a href="../project3-nexus/index.html">Nexus</a>
+                <a href="../project5-workflow/index.html">Workflow</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section container">
+            <div class="page-header animate-fade-in-up">
+                <div class="subtitle-pill"
+                    style="background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.2); color: var(--accent-amber);">
+                    📐 Project 4 of 5</div>
+                <h1>Partnership Income <span class="gradient-text">Allocation Calculator</span></h1>
+                <p class="page-desc">Calculate and visualize how partnership income, deductions, credits, and
+                    distributions are allocated among partners based on configurable profit/loss sharing ratios and
+                    guaranteed payments.</p>
+            </div>
+        </section>
+
+        <!-- Input Section -->
+        <section class="section container">
+            <div class="grid-2">
+                <!-- Partnership Financials -->
+                <div class="glass-card form-panel animate-fade-in-up">
+                    <h3 class="panel-title" style="color:var(--accent-amber);">💰 Partnership Financials</h3>
+                    <div class="form-group">
+                        <label>Total Ordinary Business Income</label>
+                        <input type="number" class="form-control" id="ordinaryIncome" value="1200000">
+                    </div>
+                    <div class="form-group">
+                        <label>Net Rental Income</label>
+                        <input type="number" class="form-control" id="rentalIncome" value="85000">
+                    </div>
+                    <div class="form-group">
+                        <label>Interest Income</label>
+                        <input type="number" class="form-control" id="interestIncome" value="28000">
+                    </div>
+                    <div class="form-group">
+                        <label>Dividend Income</label>
+                        <input type="number" class="form-control" id="dividendIncome" value="15000">
+                    </div>
+                    <div class="form-group">
+                        <label>Net Capital Gains</label>
+                        <input type="number" class="form-control" id="capitalGains" value="60000">
+                    </div>
+                    <div class="form-group">
+                        <label>Section 1231 Gains</label>
+                        <input type="number" class="form-control" id="sec1231" value="20000">
+                    </div>
+                    <div class="form-group">
+                        <label>Charitable Contributions</label>
+                        <input type="number" class="form-control" id="charitable" value="18000">
+                    </div>
+                    <div class="form-group">
+                        <label>Section 179 Deduction</label>
+                        <input type="number" class="form-control" id="sec179" value="45000">
+                    </div>
+                    <div class="form-group">
+                        <label>Foreign Tax Credits</label>
+                        <input type="number" class="form-control" id="foreignTax" value="6000">
+                    </div>
+                    <div class="form-group">
+                        <label>Total Distributions Made</label>
+                        <input type="number" class="form-control" id="distributions" value="400000">
+                    </div>
+                </div>
+
+                <!-- Partner Setup -->
+                <div class="glass-card form-panel animate-fade-in-up delay-1">
+                    <h3 class="panel-title" style="color:var(--accent-amber);">👥 Partner Configuration</h3>
+                    <div class="form-group">
+                        <label>Number of Partners</label>
+                        <select class="form-control" id="numPartners">
+                            <option value="2">2 Partners</option>
+                            <option value="3" selected>3 Partners</option>
+                            <option value="4">4 Partners</option>
+                            <option value="5">5 Partners</option>
+                        </select>
+                    </div>
+                    <div id="partnerConfig"></div>
+                    <p class="form-hint" id="ratioHint">Profit & loss ratios must each total 100%</p>
+                    <button class="btn btn-primary" id="calculateBtn"
+                        style="width:100%;justify-content:center;margin-top:16px;">
+                        ⚡ Calculate Allocations
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="section container" id="resultsSection" style="display:none;">
+            <div class="section-header">
+                <h2>📊 Allocation <span class="gradient-text">Results</span></h2>
+                <p>Detailed breakdown of each partner's allocable share of income, deductions, credits, and
+                    distributions.</p>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="grid-4 animate-fade-in-up" id="summaryCards"></div>
+
+            <!-- Charts -->
+            <div class="grid-2" style="margin-top:28px;">
+                <div class="glass-card chart-panel animate-fade-in-up delay-1">
+                    <h4>Income Allocation by Partner</h4>
+                    <canvas id="allocationPie"></canvas>
+                </div>
+                <div class="glass-card chart-panel animate-fade-in-up delay-2">
+                    <h4>Allocation Breakdown</h4>
+                    <canvas id="breakdownBar"></canvas>
+                </div>
+            </div>
+
+            <!-- Partner Detail Cards -->
+            <div id="partnerCards" style="margin-top:28px;"></div>
+
+            <!-- Capital Account Summary -->
+            <div class="glass-card" style="margin-top:28px;padding:24px;">
+                <h4 style="margin-bottom:16px;">📒 Capital Account Movement</h4>
+                <div class="table-wrapper">
+                    <table id="capitalTable">
+                        <thead>
+                            <tr id="capitalHead"></tr>
+                        </thead>
+                        <tbody id="capitalBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tax Basis Summary -->
+            <div class="glass-card" style="margin-top:28px;padding:24px;">
+                <h4 style="margin-bottom:16px;">📑 Partner Tax Basis Summary</h4>
+                <div class="table-wrapper">
+                    <table id="basisTable">
+                        <thead>
+                            <tr id="basisHead"></tr>
+                        </thead>
+                        <tbody id="basisBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reference Section -->
+        <section class="section container">
+            <div class="section-header">
+                <h2>📚 Allocation <span class="gradient-text">Rules Reference</span></h2>
+            </div>
+            <div class="grid-3">
+                <div class="glass-card ref-card scroll-reveal">
+                    <h4>IRC §704(a)</h4>
+                    <p>Partner's distributive share is determined by the partnership agreement. Allocations must follow
+                        the agreed profit/loss ratios.</p>
+                </div>
+                <div class="glass-card ref-card scroll-reveal">
+                    <h4>IRC §704(b)</h4>
+                    <p>Allocations must have "substantial economic effect" – they must affect the dollar amount of the
+                        partners' shares of the economic benefit or burden.</p>
+                </div>
+                <div class="glass-card ref-card scroll-reveal">
+                    <h4>IRC §707(c)</h4>
+                    <p>Guaranteed payments to a partner for services or capital are deductible by the partnership and
+                        ordinary income to the recipient partner.</p>
+                </div>
+                <div class="glass-card ref-card scroll-reveal">
+                    <h4>IRC §731</h4>
+                    <p>Distributions generally don't trigger gain unless cash distributed exceeds partner's outside
+                        basis. Distributions reduce capital accounts.</p>
+                </div>
+                <div class="glass-card ref-card scroll-reveal">
+                    <h4>IRC §752</h4>
+                    <p>Increases in partner's share of partnership liabilities are treated as contributions of money,
+                        increasing their basis. Decreases are treated as distributions.</p>
+                </div>
+                <div class="glass-card ref-card scroll-reveal">
+                    <h4>IRC §199A (QBI)</h4>
+                    <p>Each partner's Qualified Business Income deduction is calculated at the individual level using
+                        their K-1 allocations from the partnership.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Project 4 of 5 | <span class="brand">Partnership Income Allocation Calculator</span> | BDO RISE – LLP
+                Team</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

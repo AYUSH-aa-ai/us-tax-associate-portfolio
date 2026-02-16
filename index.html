@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="US Tax Associate Portfolio – 5 Interactive Projects for LLP Team at BDO RISE. Demonstrating expertise in Form 1065, Schedule K-1, multi-state nexus, and partnership tax.">
+  <title>US Tax Associate Portfolio | BDO RISE – LLP Team</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ===== Landing Page Specific ===== */
+    .hero {
+      padding: 100px 0 60px;
+      text-align: center;
+    }
+
+    .hero .subtitle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent-blue);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      margin-bottom: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero .description {
+      max-width: 640px;
+      margin: 0 auto 40px;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat .number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-stat .label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Project Cards */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+    }
+
+    .project-card {
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 4px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .project-card:nth-child(1)::before { background: var(--gradient-main); }
+    .project-card:nth-child(2)::before { background: var(--gradient-cool); }
+    .project-card:nth-child(3)::before { background: var(--gradient-success); }
+    .project-card:nth-child(4)::before { background: var(--gradient-warm); }
+    .project-card:nth-child(5)::before { background: linear-gradient(135deg, var(--accent-purple), var(--accent-rose)); }
+
+    .project-card .card-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .project-card:nth-child(1) .card-number { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+    .project-card:nth-child(2) .card-number { background: rgba(6,182,212,0.15); color: var(--accent-cyan); }
+    .project-card:nth-child(3) .card-number { background: rgba(16,185,129,0.15); color: var(--accent-emerald); }
+    .project-card:nth-child(4) .card-number { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
+    .project-card:nth-child(5) .card-number { background: rgba(139,92,246,0.15); color: var(--accent-purple); }
+
+    .project-card .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .project-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .project-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .project-card .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .project-card .tag {
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .project-card .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-blue);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap var(--transition-fast);
+    }
+
+    .project-card .card-link:hover { gap: 12px; }
+
+    /* Skills */
+    .skills-section {
+      padding: 60px 0;
+    }
+
+    .skill-item {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .skill-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .skill-info {
+      flex: 1;
+    }
+
+    .skill-info h4 {
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .skill-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border-glass);
+      text-align: center;
+    }
+
+    .footer p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .footer .brand {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 60px 0 40px; }
+      .hero-stats { gap: 24px; }
+      .project-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Orbs -->
+  <div class="bg-orbs">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">📊</div>
+        <span>TaxPro<span style="color:var(--accent-blue)">Portfolio</span></span>
+      </a>
+      <nav>
+        <a href="project1-compliance/index.html">Compliance</a>
+        <a href="project2-form1065/index.html">Form 1065</a>
+        <a href="project3-nexus/index.html">Nexus</a>
+        <a href="project4-allocation/index.html">Allocation</a>
+        <a href="project5-workflow/index.html">Workflow</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero container animate-fade-in-up">
+      <div class="subtitle">🏢 BDO RISE – LLP Team | US Taxation</div>
+      <h1>US Tax Associate<br><span class="gradient-text">Project Portfolio</span></h1>
+      <p class="description">
+        A collection of 5 interactive tools demonstrating in-depth knowledge of US partnership taxation, 
+        Form 1065 compliance, multi-state nexus analysis, and LLP tax workflow management.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="#projects" class="btn btn-primary">Explore Projects ↓</a>
+        <a href="#skills" class="btn btn-outline">View Skills →</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="number" data-count="5">0</div>
+          <div class="label">Interactive Projects</div>
+        </div>
+        <div class="hero-stat">
+          <div class="number" data-count="50">0</div>
+          <div class="label">US States Covered</div>
+        </div>
+        <div class="hero-stat">
+          <div class="number" data-count="15">0</div>
+          <div class="label">IRS Forms Analyzed</div>
+        </div>
+        <div class="hero-stat">
+          <div class="number" data-count="100">0</div>
+          <div class="label">% Web-Based</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section container" id="projects">
+      <div class="section-header" style="text-align:center;">
+        <h2>Featured <span class="gradient-text">Projects</span></h2>
+        <p style="margin:0 auto;">Each project demonstrates practical knowledge essential for US partnership taxation in the LLP team.</p>
+      </div>
+
+      <div class="project-grid">
+        <!-- Project 1 -->
+        <div class="project-card glass-card scroll-reveal">
+          <div class="card-number">01</div>
+          <span class="card-icon">🛡️</span>
+          <h3>US LLP Tax Compliance Dashboard</h3>
+          <p>Interactive dashboard tracking all IRS compliance requirements for US LLPs – filing obligations, penalties, deadlines, and status monitoring with real-time progress tracking.</p>
+          <div class="tags">
+            <span class="tag">Form 1065</span>
+            <span class="tag">IRS Compliance</span>
+            <span class="tag">Penalties</span>
+            <span class="tag">Deadlines</span>
+          </div>
+          <a href="project1-compliance/index.html" class="card-link">Open Project →</a>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card glass-card scroll-reveal">
+          <div class="card-number">02</div>
+          <span class="card-icon">📋</span>
+          <h3>Form 1065 & Schedule K-1 Analyzer</h3>
+          <p>Input partnership financials and auto-generate Schedule K-1 allocations for each partner – covering ordinary income, rental income, interest, dividends, and capital gains.</p>
+          <div class="tags">
+            <span class="tag">Form 1065</span>
+            <span class="tag">Schedule K-1</span>
+            <span class="tag">Partner Allocations</span>
+          </div>
+          <a href="project2-form1065/index.html" class="card-link">Open Project →</a>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card glass-card scroll-reveal">
+          <div class="card-number">03</div>
+          <span class="card-icon">🗺️</span>
+          <h3>Multi-State Tax Nexus Tracker</h3>
+          <p>Interactive US map to identify state nexus obligations for LLPs. Toggle states to view filing requirements, income apportionment rules, due dates, and estimated tax rates.</p>
+          <div class="tags">
+            <span class="tag">State Nexus</span>
+            <span class="tag">Apportionment</span>
+            <span class="tag">Multi-State</span>
+          </div>
+          <a href="project3-nexus/index.html" class="card-link">Open Project →</a>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card glass-card scroll-reveal">
+          <div class="card-number">04</div>
+          <span class="card-icon">📐</span>
+          <h3>Partnership Income Allocation Calculator</h3>
+          <p>Calculate and visualize how partnership income, deductions, credits, and distributions are allocated among partners based on configurable profit/loss sharing ratios.</p>
+          <div class="tags">
+            <span class="tag">Income Allocation</span>
+            <span class="tag">Profit Sharing</span>
+            <span class="tag">Guaranteed Payments</span>
+          </div>
+          <a href="project4-allocation/index.html" class="card-link">Open Project →</a>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card glass-card scroll-reveal">
+          <div class="card-number">05</div>
+          <span class="card-icon">📅</span>
+          <h3>Tax Filing Workflow & Deadline Manager</h3>
+          <p>Kanban-style workflow board for managing the complete tax filing lifecycle with an integrated tax calendar showing all federal and state deadlines for TY 2025.</p>
+          <div class="tags">
+            <span class="tag">Workflow</span>
+            <span class="tag">Kanban</span>
+            <span class="tag">Tax Calendar</span>
+            <span class="tag">Deadlines</span>
+          </div>
+          <a href="project5-workflow/index.html" class="card-link">Open Project →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section container" id="skills">
+      <div class="section-header" style="text-align:center;">
+        <h2>Core <span class="gradient-text">Competencies</span></h2>
+        <p style="margin:0 auto;">Key skills demonstrated across all five projects.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="skill-item glass-card scroll-reveal">
+          <div class="skill-icon" style="background:rgba(59,130,246,0.15);">📑</div>
+          <div class="skill-info">
+            <h4>Partnership Taxation (IRC Subchapter K)</h4>
+            <p>Form 1065, Schedule K-1, partner basis, special allocations</p>
+          </div>
+        </div>
+        <div class="skill-item glass-card scroll-reveal">
+          <div class="skill-icon" style="background:rgba(16,185,129,0.15);">🏛️</div>
+          <div class="skill-info">
+            <h4>IRS Compliance & Regulations</h4>
+            <p>Filing deadlines, estimated taxes, penalty provisions</p>
+          </div>
+        </div>
+        <div class="skill-item glass-card scroll-reveal">
+          <div class="skill-icon" style="background:rgba(6,182,212,0.15);">🗺️</div>
+          <div class="skill-info">
+            <h4>Multi-State Tax Nexus</h4>
+            <p>State nexus rules, apportionment, withholding requirements</p>
+          </div>
+        </div>
+        <div class="skill-item glass-card scroll-reveal">
+          <div class="skill-icon" style="background:rgba(245,158,11,0.15);">📊</div>
+          <div class="skill-info">
+            <h4>Income Allocation & Distribution</h4>
+            <p>Profit/loss ratios, guaranteed payments, §704(b) allocations</p>
+          </div>
+        </div>
+        <div class="skill-item glass-card scroll-reveal">
+          <div class="skill-icon" style="background:rgba(139,92,246,0.15);">⚙️</div>
+          <div class="skill-info">
+            <h4>Tax Workflow Management</h4>
+            <p>Document tracking, filing lifecycle, deadline management</p>
+          </div>
+        </div>
+        <div class="skill-item glass-card scroll-reveal">
+          <div class="skill-icon" style="background:rgba(244,63,94,0.15);">💻</div>
+          <div class="skill-info">
+            <h4>Data Analysis & Visualization</h4>
+            <p>Tax data modeling, interactive dashboards, reporting</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>Built with dedication by <span class="brand">Tax Associate</span> | BDO RISE – LLP Team, US Taxation | B.Com (Hons)</p>
+      <p style="margin-top:8px;font-size:0.78rem;color:var(--text-muted);">Designed to demonstrate readiness for Day 1 and beyond.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Animate hero counters
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseInt(el.dataset.count);
+        animateCounter(el, target, 2000);
+      });
+    });
+  </script>
+</body>
+</html>

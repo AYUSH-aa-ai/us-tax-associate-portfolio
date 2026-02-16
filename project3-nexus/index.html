@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Multi-State Tax Nexus Tracker – Identify state nexus obligations, filing requirements, and apportionment rules for US partnerships.">
+    <title>Project 3: Multi-State Tax Nexus Tracker</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon" style="background:var(--gradient-success);">🗺️</div>
+                <span>Nexus<span style="color:var(--accent-emerald);">Tracker</span></span>
+            </a>
+            <nav>
+                <a href="../index.html">← Portfolio</a>
+                <a href="../project1-compliance/index.html">Compliance</a>
+                <a href="../project2-form1065/index.html">Form 1065</a>
+                <a href="../project4-allocation/index.html">Allocation</a>
+                <a href="../project5-workflow/index.html">Workflow</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section container">
+            <div class="page-header animate-fade-in-up">
+                <div class="subtitle-pill"
+                    style="background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.2);color:var(--accent-emerald);">
+                    🗺️ Project 3 of 5</div>
+                <h1>Multi-State Tax <span class="gradient-text">Nexus Tracker</span></h1>
+                <p class="page-desc">Identify state nexus obligations for US partnerships. Select states where the LLP
+                    has nexus to view filing requirements, income apportionment rules, due dates, and estimated tax
+                    rates.</p>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="container">
+            <div class="grid-4 animate-fade-in-up delay-1">
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(16,185,129,0.15);">🗺️</div>
+                    <div class="stat-value" style="color:var(--accent-emerald);" id="nexusCount">0</div>
+                    <div class="stat-label">States with Nexus</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(59,130,246,0.15);">📑</div>
+                    <div class="stat-value" style="color:var(--accent-blue);" id="filingCount">0</div>
+                    <div class="stat-label">Returns Required</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(245,158,11,0.15);">💰</div>
+                    <div class="stat-value" style="color:var(--accent-amber);" id="avgRate">0%</div>
+                    <div class="stat-label">Avg. State Tax Rate</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(139,92,246,0.15);">🏛️</div>
+                    <div class="stat-value" style="color:var(--accent-purple);" id="noIncomeCount">9</div>
+                    <div class="stat-label">No Income Tax States</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- State Selection Grid -->
+        <section class="section container">
+            <div class="section-header">
+                <h2>🏛️ Select <span class="gradient-text">Nexus States</span></h2>
+                <p>Click on states where the partnership has economic nexus, physical presence, or filing obligations.
+                </p>
+            </div>
+
+            <div class="controls-bar animate-fade-in-up">
+                <input type="text" class="form-control search-input" id="stateSearch" placeholder="🔍 Search states...">
+                <div class="control-btns">
+                    <button class="btn btn-sm btn-outline" id="selectAllBtn">Select All</button>
+                    <button class="btn btn-sm btn-outline" id="clearAllBtn">Clear All</button>
+                    <button class="btn btn-sm btn-outline" id="selectCommonBtn">Common Nexus</button>
+                </div>
+            </div>
+
+            <div class="state-grid" id="stateGrid"></div>
+        </section>
+
+        <!-- Selected States Detail -->
+        <section class="section container" id="detailSection" style="display:none;">
+            <div class="section-header">
+                <h2>📊 Nexus <span class="gradient-text">Analysis</span></h2>
+                <p>Detailed filing requirements and tax information for selected nexus states.</p>
+            </div>
+
+            <div class="table-wrapper glass-card animate-fade-in-up">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>State</th>
+                            <th>Tax Type</th>
+                            <th>Top Rate</th>
+                            <th>Apportionment</th>
+                            <th>Filing Due</th>
+                            <th>Extension</th>
+                            <th>PTE Election</th>
+                            <th>Composite Return</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Key Concepts -->
+        <section class="section container">
+            <div class="section-header">
+                <h2>📚 Nexus <span class="gradient-text">Concepts</span></h2>
+                <p>Key multi-state tax concepts every LLP practitioner should understand.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="glass-card concept-card scroll-reveal">
+                    <div class="concept-icon">🏢</div>
+                    <h4>Physical Nexus</h4>
+                    <p>Established through physical presence: office, employees, property, or regular solicitation in a
+                        state. Traditional standard before <em>Wayfair</em>.</p>
+                </div>
+                <div class="glass-card concept-card scroll-reveal">
+                    <div class="concept-icon">🌐</div>
+                    <h4>Economic Nexus</h4>
+                    <p>Post-<em>South Dakota v. Wayfair</em> (2018): states can assert nexus based on economic activity
+                        – typically $100K revenue or 200 transactions.</p>
+                </div>
+                <div class="glass-card concept-card scroll-reveal">
+                    <div class="concept-icon">📊</div>
+                    <h4>Factor Apportionment</h4>
+                    <p>States use sales, payroll, and property factors to determine taxable income. Most states now use
+                        single sales factor apportionment.</p>
+                </div>
+                <div class="glass-card concept-card scroll-reveal">
+                    <div class="concept-icon">📋</div>
+                    <h4>Composite Returns</h4>
+                    <p>Some states allow or require composite returns for non-resident partners, simplifying compliance
+                        by filing one return for all non-resident partners.</p>
+                </div>
+                <div class="glass-card concept-card scroll-reveal">
+                    <div class="concept-icon">🏛️</div>
+                    <h4>PTE Elections</h4>
+                    <p>Pass-Through Entity (PTE) tax elections allow partnerships to pay state tax at the entity level,
+                        providing partners with a workaround for the $10K SALT cap.</p>
+                </div>
+                <div class="glass-card concept-card scroll-reveal">
+                    <div class="concept-icon">💲</div>
+                    <h4>Withholding Requirements</h4>
+                    <p>Many states require partnerships to withhold state income tax on allocations to non-resident
+                        partners. Rates and thresholds vary by state.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Project 3 of 5 | <span class="brand">Multi-State Tax Nexus Tracker</span> | BDO RISE – LLP Team</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

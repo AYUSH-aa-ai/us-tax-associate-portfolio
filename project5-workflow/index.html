@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Tax Filing Workflow & Deadline Manager – Kanban board for filing lifecycle and tax calendar with all federal and state deadlines.">
+    <title>Project 5: Tax Filing Workflow & Deadline Manager</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon"
+                    style="background:linear-gradient(135deg,var(--accent-purple),var(--accent-rose));">📅</div>
+                <span>Tax<span style="color:var(--accent-purple);">Workflow</span></span>
+            </a>
+            <nav>
+                <a href="../index.html">← Portfolio</a>
+                <a href="../project1-compliance/index.html">Compliance</a>
+                <a href="../project2-form1065/index.html">Form 1065</a>
+                <a href="../project3-nexus/index.html">Nexus</a>
+                <a href="../project4-allocation/index.html">Allocation</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section container">
+            <div class="page-header animate-fade-in-up">
+                <div class="subtitle-pill"
+                    style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.2);color:var(--accent-purple);">
+                    📅 Project 5 of 5</div>
+                <h1>Tax Filing Workflow & <span class="gradient-text">Deadline Manager</span></h1>
+                <p class="page-desc">Kanban-style workflow board for managing the complete tax filing lifecycle with an
+                    integrated tax calendar showing all federal and state deadlines for TY 2025.</p>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="container">
+            <div class="grid-4 animate-fade-in-up delay-1">
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(139,92,246,0.15);">📋</div>
+                    <div class="stat-value" style="color:var(--accent-purple);" id="totalTasks">0</div>
+                    <div class="stat-label">Total Tasks</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(59,130,246,0.15);">🔄</div>
+                    <div class="stat-value" style="color:var(--accent-blue);" id="inProgress">0</div>
+                    <div class="stat-label">In Progress</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(16,185,129,0.15);">✅</div>
+                    <div class="stat-value" style="color:var(--accent-emerald);" id="completed">0</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon" style="background:rgba(244,63,94,0.15);">⏰</div>
+                    <div class="stat-value" style="color:var(--accent-rose);" id="daysLeft">0</div>
+                    <div class="stat-label">Days Until March 15</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabs -->
+        <section class="section container">
+            <div class="tabs animate-fade-in-up delay-2">
+                <button class="tab active" data-panel="kanban">📋 Kanban Board</button>
+                <button class="tab" data-panel="calendar">📅 Tax Calendar</button>
+                <button class="tab" data-panel="clients">👥 Client Tracker</button>
+            </div>
+
+            <!-- Kanban Board -->
+            <div class="tab-panel" id="kanban" style="display:block;">
+                <div class="kanban-board" id="kanbanBoard"></div>
+            </div>
+
+            <!-- Tax Calendar -->
+            <div class="tab-panel" id="calendar" style="display:none;">
+                <div class="calendar-controls">
+                    <button class="btn btn-sm btn-outline" id="prevMonth">← Prev</button>
+                    <h3 id="calendarTitle">March 2026</h3>
+                    <button class="btn btn-sm btn-outline" id="nextMonth">Next →</button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid"></div>
+                <div class="glass-card" style="padding:24px;margin-top:24px;">
+                    <h4 style="margin-bottom:16px;">📅 Upcoming Deadlines</h4>
+                    <div id="upcomingDeadlines"></div>
+                </div>
+            </div>
+
+            <!-- Client Tracker -->
+            <div class="tab-panel" id="clients" style="display:none;">
+                <div class="glass-card" style="padding:24px;">
+                    <div
+                        style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+                        <h3>Client Filing Status</h3>
+                        <button class="btn btn-sm btn-primary" id="addClientBtn">+ Add Client</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Client / Partnership</th>
+                                    <th>EIN</th>
+                                    <th>Partners</th>
+                                    <th>Status</th>
+                                    <th>Assigned To</th>
+                                    <th>Due Date</th>
+                                    <th>Progress</th>
+                                </tr>
+                            </thead>
+                            <tbody id="clientTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Guide -->
+        <section class="section container">
+            <div class="section-header">
+                <h2>📚 Filing <span class="gradient-text">Lifecycle</span></h2>
+            </div>
+            <div class="lifecycle-flow">
+                <div class="lifecycle-step glass-card scroll-reveal">
+                    <div class="ls-number">1</div>
+                    <h4>📥 Document Collection</h4>
+                    <p>Gather engagement letter, prior year returns, financial statements, bank statements, 1099s, W-2s,
+                        K-1s from other entities.</p>
+                </div>
+                <div class="lifecycle-arrow">→</div>
+                <div class="lifecycle-step glass-card scroll-reveal">
+                    <div class="ls-number">2</div>
+                    <h4>📝 Data Entry</h4>
+                    <p>Input financials into tax software, prepare trial balance adjustments, compute book-to-tax
+                        differences.</p>
+                </div>
+                <div class="lifecycle-arrow">→</div>
+                <div class="lifecycle-step glass-card scroll-reveal">
+                    <div class="ls-number">3</div>
+                    <h4>🔍 Review</h4>
+                    <p>Senior/manager review of Form 1065, K-1 allocations, state returns. Quality control and
+                        cross-referencing.</p>
+                </div>
+                <div class="lifecycle-arrow">→</div>
+                <div class="lifecycle-step glass-card scroll-reveal">
+                    <div class="ls-number">4</div>
+                    <h4>📤 E-File</h4>
+                    <p>Electronic filing with IRS and state agencies. Verify acceptance and distribute K-1s to partners.
+                    </p>
+                </div>
+                <div class="lifecycle-arrow">→</div>
+                <div class="lifecycle-step glass-card scroll-reveal">
+                    <div class="ls-number">5</div>
+                    <h4>✅ Close & Archive</h4>
+                    <p>Confirm filing acceptance, archive engagement file, schedule estimated tax reminders for
+                        partners.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Project 5 of 5 | <span class="brand">Tax Filing Workflow & Deadline Manager</span> | BDO RISE – LLP Team
+            </p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

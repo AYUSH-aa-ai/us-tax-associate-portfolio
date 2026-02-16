@@ -1,0 +1,196 @@
+/* ===== Project 2: Form 1065 & K-1 Analyzer Styles ===== */
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.subtitle-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent-cyan);
+    margin-bottom: 20px;
+}
+
+.page-desc {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 640px;
+    margin: 12px auto 0;
+    line-height: 1.7;
+}
+
+.form-panel {
+    padding: 28px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-style: italic;
+}
+
+.panel-title {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.income-title {
+    color: var(--accent-emerald);
+}
+
+.deduction-title {
+    color: var(--accent-rose);
+}
+
+/* Partner input rows */
+.partner-row {
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    gap: 12px;
+    align-items: end;
+    margin-bottom: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.partner-row .partner-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    margin-bottom: 4px;
+}
+
+/* Chart panel */
+.chart-panel {
+    padding: 28px;
+}
+
+/* K-1 Cards */
+.k1-card {
+    padding: 28px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+}
+
+.k1-card:nth-child(1) {
+    border-left-color: var(--accent-blue);
+}
+
+.k1-card:nth-child(2) {
+    border-left-color: var(--accent-cyan);
+}
+
+.k1-card:nth-child(3) {
+    border-left-color: var(--accent-purple);
+}
+
+.k1-card:nth-child(4) {
+    border-left-color: var(--accent-emerald);
+}
+
+.k1-card:nth-child(5) {
+    border-left-color: var(--accent-amber);
+}
+
+.k1-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.k1-header h3 {
+    font-size: 1.15rem;
+}
+
+.k1-header .ownership {
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.k1-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.k1-item {
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.k1-item .k1-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.k1-item .k1-value {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.k1-item .k1-value.positive {
+    color: var(--accent-emerald);
+}
+
+.k1-item .k1-value.negative {
+    color: var(--accent-rose);
+}
+
+/* Summary stat cards */
+.summary-stat {
+    padding: 20px;
+    text-align: center;
+}
+
+.summary-stat .ss-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.summary-stat .ss-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .partner-row {
+        grid-template-columns: 1fr;
+    }
+
+    .k1-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
