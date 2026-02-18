@@ -32,6 +32,7 @@
                 <a href="../project3-nexus/index.html">Nexus</a>
                 <a href="../project4-allocation/index.html">Allocation</a>
             </nav>
+            <button class="theme-toggle" aria-label="Toggle theme">??</button>
         </div>
     </header>
 
@@ -40,10 +41,10 @@
             <div class="page-header animate-fade-in-up">
                 <div class="subtitle-pill"
                     style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.2);color:var(--accent-purple);">
-                    📅 Project 5 of 5</div>
+                    📅 Project 5 of 8 • <span style="color:var(--accent-purple)">AI Enhanced</span></div>
                 <h1>Tax Filing Workflow & <span class="gradient-text">Deadline Manager</span></h1>
-                <p class="page-desc">Kanban-style workflow board for managing the complete tax filing lifecycle with an
-                    integrated tax calendar showing all federal and state deadlines for TY 2025.</p>
+                <p class="page-desc">AI-powered workflow with smart task prioritization, burnout prediction, and
+                    workload balancing. Kanban board with intelligent deadline management.</p>
             </div>
         </section>
 
@@ -128,6 +129,57 @@
             </div>
         </section>
 
+        <!-- AI Workload Optimizer -->
+        <section class="section container">
+            <div class="section-header">
+                <h2>🤖 AI Workload <span class="gradient-text">Optimizer</span></h2>
+                <p>Intelligent task prioritization and burnout prevention powered by AI.</p>
+            </div>
+            <div class="grid-4">
+                <div class="glass-card" style="padding:20px;text-align:center;">
+                    <div style="font-size:2rem;margin-bottom:8px;">🧠</div>
+                    <div style="font-size:1.5rem;font-weight:800;color:var(--accent-emerald);">Low</div>
+                    <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Burnout Risk</div>
+                </div>
+                <div class="glass-card" style="padding:20px;text-align:center;">
+                    <div style="font-size:2rem;margin-bottom:8px;">⚖️</div>
+                    <div style="font-size:1.5rem;font-weight:800;color:var(--accent-blue);">Balanced</div>
+                    <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Workload Distribution</div>
+                </div>
+                <div class="glass-card" style="padding:20px;text-align:center;">
+                    <div style="font-size:2rem;margin-bottom:8px;">📈</div>
+                    <div style="font-size:1.5rem;font-weight:800;color:var(--accent-amber);">87%</div>
+                    <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Team Efficiency</div>
+                </div>
+                <div class="glass-card" style="padding:20px;text-align:center;">
+                    <div style="font-size:2rem;margin-bottom:8px;">🎯</div>
+                    <div style="font-size:1.5rem;font-weight:800;color:var(--accent-purple);">5</div>
+                    <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Priority Tasks</div>
+                </div>
+            </div>
+            <div class="glass-card" style="padding:20px;margin-top:16px;">
+                <h4 style="margin-bottom:12px;">🔔 AI Smart Recommendations</h4>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div
+                        style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid var(--accent-emerald);font-size:0.85rem;">
+                        🟢 <strong>On Track:</strong> Current workload sustainable. Team averaging 42 hrs/week during
+                        busy season — below burnout threshold of 55 hrs.</div>
+                    <div
+                        style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid var(--accent-amber);font-size:0.85rem;">
+                        🟡 <strong>Reassign:</strong> Partner B has 8 clients vs team avg of 5. Consider redistributing
+                        2-3 clients to Partners C/D for balance.</div>
+                    <div
+                        style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid var(--accent-blue);font-size:0.85rem;">
+                        🔵 <strong>Priority Shift:</strong> Move "Beta Consulting Partners" from In Progress to Review —
+                        dependency on K-1 data resolved.</div>
+                    <div
+                        style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid var(--accent-purple);font-size:0.85rem;">
+                        🟣 <strong>Optimization:</strong> Auto-scheduling suggests completing state returns sequentially
+                        by due date to minimize context-switching overhead.</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Workflow Guide -->
         <section class="section container">
             <div class="section-header">
@@ -174,12 +226,14 @@
 
     <footer class="footer">
         <div class="container">
-            <p>Project 5 of 5 | <span class="brand">Tax Filing Workflow & Deadline Manager</span> | BDO RISE – LLP Team
+            <p>Project 5 of 8 | <span class="brand">Tax Filing Workflow & Deadline Manager</span> | BDO RISE – LLP Team
             </p>
         </div>
     </footer>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="../js/app.js"></script>
+    <script>if(typeof lucide!=="undefined")lucide.createIcons();</script>
     <script src="script.js"></script>
 </body>
 

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AI Tax Research Assistant – Conversational AI for IRC partnership tax questions. BDO RISE LLP Team.">
+    <title>AI Tax Research Assistant | BDO RISE – LLP Team</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);"><i data-lucide="bot"
+                        style="width:18px;height:18px;color:#fff;"></i></div>
+                <span>TaxPro<span style="color:var(--accent-blue)">AI</span></span>
+            </a>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../project1-compliance/index.html">Compliance</a>
+                <a href="../project2-form1065/index.html">Form 1065</a>
+                <a href="../project3-nexus/index.html">Nexus</a>
+                <a href="../project7-doc-analyzer/index.html">Doc AI</a>
+                <a href="../project8-predictor/index.html">Predictor</a>
+            </nav>
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top:32px;padding-bottom:48px;">
+        <!-- Header -->
+        <div class="section-header animate-fade-in-up" style="text-align:center;margin-bottom:32px;">
+            <h1>Your tax research <span class="gradient-text">co-pilot</span></h1>
+            <p style="margin:0 auto;">Ask any US partnership tax question — it pulls from 12+ IRC sections,
+                Treasury Regulations, and BDO practice tips to give you clear, cited answers.</p>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="ai-stats-bar animate-fade-in-up delay-1">
+            <div class="ai-stat glass-card">
+                <div class="stat-icon" style="background:rgba(59,130,246,0.15);"><i data-lucide="brain"
+                        style="width:20px;height:20px;color:#3b82f6;"></i></div>
+                <div class="stat-val" id="statSections">0</div>
+                <div class="stat-lbl">IRC Sections</div>
+            </div>
+            <div class="ai-stat glass-card">
+                <div class="stat-icon" style="background:rgba(16,185,129,0.15);"><i data-lucide="message-circle"
+                        style="width:20px;height:20px;color:#10b981;"></i></div>
+                <div class="stat-val" id="statQueries">0</div>
+                <div class="stat-lbl">Queries Answered</div>
+            </div>
+            <div class="ai-stat glass-card">
+                <div class="stat-icon" style="background:rgba(139,92,246,0.15);"><i data-lucide="book-open"
+                        style="width:20px;height:20px;color:#8b5cf6;"></i></div>
+                <div class="stat-val">50+</div>
+                <div class="stat-lbl">Regulations</div>
+            </div>
+            <div class="ai-stat glass-card">
+                <div class="stat-icon" style="background:rgba(245,158,11,0.15);"><i data-lucide="zap"
+                        style="width:20px;height:20px;color:#f59e0b;"></i></div>
+                <div class="stat-val">&lt;2s</div>
+                <div class="stat-lbl">Response Time</div>
+            </div>
+        </div>
+
+        <!-- Chat Layout -->
+        <div class="ai-chat-layout animate-fade-in-up delay-2">
+            <!-- Sidebar -->
+            <div class="ai-sidebar">
+                <div class="ai-model-badge glass-card">
+                    <div class="model-avatar"><i data-lucide="bot" style="width:24px;height:24px;color:#818cf8;"></i>
+                    </div>
+                    <div class="model-info">
+                        <h4>TaxPro AI v2.0</h4>
+                        <p>Online & Ready</p>
+                    </div>
+                </div>
+
+                <div class="quick-questions glass-card">
+                    <h5><i data-lucide="zap" style="width:14px;height:14px;"></i> Quick Questions</h5>
+                    <div id="quickQuestions"></div>
+                </div>
+
+                <div class="irc-topics glass-card">
+                    <h5><i data-lucide="bookmark" style="width:14px;height:14px;"></i> IRC Topics</h5>
+                    <div id="ircTopics"></div>
+                </div>
+            </div>
+
+            <!-- Chat Main -->
+            <div class="ai-chat-main glass-card">
+                <div class="chat-header">
+                    <h3><i data-lucide="message-square" style="width:18px;height:18px;"></i> Research Chat <span
+                            class="ai-badge">AI POWERED</span></h3>
+                    <span style="font-size:0.8rem;color:var(--text-muted);">Partnership Tax · IRC Subchapter K</span>
+                </div>
+
+                <div class="chat-messages" id="chatMessages"></div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput"
+                        placeholder="Ask anything about partnership tax... (e.g., 'How does §751 work?')">
+                    <button class="send-btn" id="sendBtn"><i data-lucide="send"
+                            style="width:18px;height:18px;"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Built with AI by <span class="brand">Tax Associate (Ayush)</span> | BDO RISE – LLP Team</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../js/app.js"></script>
+    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

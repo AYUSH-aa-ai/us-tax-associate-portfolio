@@ -1,434 +1,1123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="US Tax Associate Portfolio – 5 Interactive Projects for LLP Team at BDO RISE. Demonstrating expertise in Form 1065, Schedule K-1, multi-state nexus, and partnership tax.">
-  <title>US Tax Associate Portfolio | BDO RISE – LLP Team</title>
+  <meta name="description"
+    content="AI-Powered US Tax Intelligence Platform — 8 cutting-edge projects for partnership taxation. BDO RISE LLP.">
+  <title>AI Tax Intelligence Platform | BDO RISE – LLP Team</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <style>
-    /* ===== Landing Page Specific ===== */
-    .hero {
-      padding: 100px 0 60px;
-      text-align: center;
+    body {
+      font-family: var(--font-heading), var(--font-body), sans-serif;
     }
 
-    .hero .subtitle {
+    /* NEURAL CANVAS */
+    #neuralCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    /* MOUSE GLOW */
+    .mouse-glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      transition: left 0.3s ease, top 0.3s ease;
+    }
+
+    /* HERO */
+    .hero-ultra {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 120px 24px 80px;
+    }
+
+    .hero-ultra::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--bg-primary), transparent);
+      z-index: 1;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+    }
+
+    .hero-chip {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.2);
-      border-radius: 50px;
-      font-size: 0.85rem;
+      gap: 10px;
+      padding: 8px 22px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 40px;
+      font-size: 0.82rem;
+      color: #a78bfa;
+      margin-bottom: 28px;
       font-weight: 500;
-      color: var(--accent-blue);
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-chip .live {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      animation: livePulse 2s infinite;
+    }
+
+    @keyframes livePulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(1.4);
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
       margin-bottom: 24px;
+      letter-spacing: -1.5px;
     }
 
-    .hero h1 {
-      font-size: clamp(2.2rem, 6vw, 3.8rem);
-      font-weight: 900;
-      margin-bottom: 20px;
-      letter-spacing: -0.03em;
-    }
-
-    .hero .description {
-      max-width: 640px;
-      margin: 0 auto 40px;
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      margin-top: 48px;
-      flex-wrap: wrap;
-    }
-
-    .hero-stat .number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: var(--gradient-main);
+    .hero-title .ai-word {
+      background: linear-gradient(135deg, #818cf8, #c084fc, #f472b6);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shiftGrad 4s ease-in-out infinite;
     }
 
-    .hero-stat .label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 4px;
+    @keyframes shiftGrad {
+
+      0%,
+      100% {
+        background-position: 0% center;
+      }
+
+      50% {
+        background-position: 100% center;
+      }
     }
 
-    /* Project Cards */
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 28px;
+    .hero-sub {
+      font-size: 1.15rem;
+      color: #94a3b8;
+      line-height: 1.7;
+      max-width: 640px;
+      margin: 0 auto 40px;
+      font-weight: 400;
     }
 
-    .project-card {
-      padding: 32px;
-      position: relative;
-      overflow: hidden;
+    .hero-metrics {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 44px;
     }
 
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 4px;
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    .hero-metric {
+      text-align: center;
     }
 
-    .project-card:nth-child(1)::before { background: var(--gradient-main); }
-    .project-card:nth-child(2)::before { background: var(--gradient-cool); }
-    .project-card:nth-child(3)::before { background: var(--gradient-success); }
-    .project-card:nth-child(4)::before { background: var(--gradient-warm); }
-    .project-card:nth-child(5)::before { background: linear-gradient(135deg, var(--accent-purple), var(--accent-rose)); }
+    .hero-metric .hm-val {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
 
-    .project-card .card-number {
+    .hero-metric .hm-lab {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-glow {
+      padding: 14px 36px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(99, 102, 241, 0.35);
+      transition: all 0.3s;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 16px;
+      gap: 8px;
     }
 
-    .project-card:nth-child(1) .card-number { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
-    .project-card:nth-child(2) .card-number { background: rgba(6,182,212,0.15); color: var(--accent-cyan); }
-    .project-card:nth-child(3) .card-number { background: rgba(16,185,129,0.15); color: var(--accent-emerald); }
-    .project-card:nth-child(4) .card-number { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
-    .project-card:nth-child(5) .card-number { background: rgba(139,92,246,0.15); color: var(--accent-purple); }
+    .btn-glow:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.5);
+    }
 
-    .project-card .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
+    .btn-ghost {
+      padding: 14px 36px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.04);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(6px);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* SCROLL INDICATOR */
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: #64748b;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(99, 102, 241, 0.6), transparent);
+      animation: scrollAnim 2s infinite;
+    }
+
+    @keyframes scrollAnim {
+      0% {
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+    }
+
+    /* COMMAND CENTER */
+    .cmd-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .cmd-tile {
+      padding: 28px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s;
+    }
+
+    .cmd-tile::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .cmd-tile:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .cmd-tile:hover::before {
+      opacity: 1;
+    }
+
+    .cmd-tile .ct-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
       display: block;
     }
 
-    .project-card h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
+    .cmd-tile .ct-val {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
 
-    .project-card p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
+    .cmd-tile .ct-lab {
+      font-size: 0.72rem;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
     }
 
-    .project-card .tags {
+    /* PROJECT CARDS */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .proj-card {
+      padding: 0;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 20px;
+      flex-direction: column;
+      position: relative;
     }
 
-    .project-card .tag {
-      padding: 4px 10px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 6px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-weight: 500;
+    .proj-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(99, 102, 241, 0.1);
     }
 
-    .project-card .card-link {
+    .proj-top {
+      height: 4px;
+      transition: height 0.3s;
+    }
+
+    .proj-card:hover .proj-top {
+      height: 6px;
+    }
+
+    .proj-body {
+      padding: 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proj-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: var(--accent-blue);
-      font-size: 0.9rem;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 0.7rem;
       font-weight: 600;
-      text-decoration: none;
-      transition: gap var(--transition-fast);
+      margin-bottom: 14px;
+      width: fit-content;
     }
 
-    .project-card .card-link:hover { gap: 12px; }
+    .proj-card .proj-emoji {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
 
-    /* Skills */
-    .skills-section {
-      padding: 60px 0;
+    .proj-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .proj-card .proj-desc {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      line-height: 1.65;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .ptag {
+      padding: 4px 10px;
+      font-size: 0.68rem;
+      border-radius: 6px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    .ptag-blue {
+      background: rgba(59, 130, 246, 0.1);
+      color: #60a5fa;
+    }
+
+    .ptag-purple {
+      background: rgba(139, 92, 246, 0.1);
+      color: #a78bfa;
+    }
+
+    .ptag-green {
+      background: rgba(16, 185, 129, 0.1);
+      color: #34d399;
+    }
+
+    .ptag-new {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* TECH STACK */
+    .tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .tech-pill {
+      padding: 10px 22px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #94a3b8;
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .tech-pill:hover {
+      background: rgba(99, 102, 241, 0.08);
+      border-color: rgba(99, 102, 241, 0.2);
+      color: #a78bfa;
+      transform: translateY(-2px);
+    }
+
+    /* SKILLS */
+    .skill-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
     }
 
     .skill-item {
       padding: 20px 24px;
+    }
+
+    .skill-item .sk-head {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      margin-bottom: 10px;
     }
 
-    .skill-icon {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-
-    .skill-info {
-      flex: 1;
-    }
-
-    .skill-info h4 {
-      font-size: 0.95rem;
-      margin-bottom: 2px;
-    }
-
-    .skill-info p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    /* Footer */
-    .footer {
-      padding: 40px 0;
-      border-top: 1px solid var(--border-glass);
-      text-align: center;
-    }
-
-    .footer p {
-      color: var(--text-muted);
+    .skill-item .sk-name {
       font-size: 0.85rem;
-    }
-
-    .footer .brand {
-      color: var(--text-primary);
       font-weight: 600;
     }
 
-    @media (max-width: 768px) {
-      .hero { padding: 60px 0 40px; }
-      .hero-stats { gap: 24px; }
-      .project-grid { grid-template-columns: 1fr; }
+    .skill-item .sk-pct {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #818cf8;
+    }
+
+    .skill-item .sk-track {
+      height: 5px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .skill-item .sk-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ABOUT */
+    .about-card {
+      padding: 48px;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .about-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.06), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .about-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+    }
+
+    .about-stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .about-stat {
+      padding: 14px 24px;
+      text-align: center;
+      min-width: 100px;
+    }
+
+    .about-stat .as-val {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .about-stat .as-lab {
+      font-size: 0.68rem;
+      color: #64748b;
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* FOOTER PRO */
+    .footer-pro {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 48px 0 32px;
+      margin-top: 60px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+
+    .footer-brand .fb-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .footer-brand .fb-title span {
+      color: #818cf8;
+    }
+
+    .footer-brand .fb-desc {
+      font-size: 0.82rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .footer-col h4 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #64748b;
+      margin-bottom: 14px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-decoration: none;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: #818cf8;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.78rem;
+      color: #475569;
+    }
+
+    @media(max-width:768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .hero-metrics {
+        gap: 24px;
+      }
+
+      .proj-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:480px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* SECTION DIVIDER */
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #6366f1, #a78bfa);
+      margin: 0 auto 16px;
+    }
+
+    /* COUNTER ANIM */
+    .count-up {
+      display: inline-block;
     }
   </style>
 </head>
+
 <body>
-  <!-- Background Orbs -->
+  <div class="mouse-glow" id="mouseGlow"></div>
+  <canvas id="neuralCanvas"></canvas>
   <div class="bg-orbs">
     <div class="orb"></div>
     <div class="orb"></div>
     <div class="orb"></div>
   </div>
 
-  <!-- Navbar -->
   <header class="navbar">
     <div class="container">
       <a href="index.html" class="logo">
-        <div class="logo-icon">📊</div>
-        <span>TaxPro<span style="color:var(--accent-blue)">Portfolio</span></span>
+        <div class="logo-icon" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);"><i data-lucide="zap"
+            style="width:18px;height:18px;color:#fff;"></i></div>
+        <span>Tax<span style="color:#818cf8">AI</span></span>
       </a>
       <nav>
-        <a href="project1-compliance/index.html">Compliance</a>
-        <a href="project2-form1065/index.html">Form 1065</a>
-        <a href="project3-nexus/index.html">Nexus</a>
-        <a href="project4-allocation/index.html">Allocation</a>
-        <a href="project5-workflow/index.html">Workflow</a>
+        <a href="#command-center">Dashboard</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="project6-ai-research/index.html">Try AI Assistant →</a>
       </nav>
+      <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
     </div>
   </header>
 
   <main>
-    <!-- Hero Section -->
-    <section class="hero container animate-fade-in-up">
-      <div class="subtitle">🏢 BDO RISE – LLP Team | US Taxation</div>
-      <h1>US Tax Associate<br><span class="gradient-text">Project Portfolio</span></h1>
-      <p class="description">
-        A collection of 5 interactive tools demonstrating in-depth knowledge of US partnership taxation, 
-        Form 1065 compliance, multi-state nexus analysis, and LLP tax workflow management.
-      </p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-        <a href="#projects" class="btn btn-primary">Explore Projects ↓</a>
-        <a href="#skills" class="btn btn-outline">View Skills →</a>
+    <!-- ===== HERO ===== -->
+    <section class="hero-ultra">
+      <div class="hero-inner animate-fade-in-up">
+        <div class="hero-chip"><span class="live"></span> Built for BDO RISE · LLP Team</div>
+        <h1 class="hero-title">
+          Smarter tools for<br>US partnership <span class="ai-word">tax work</span>
+        </h1>
+        <p class="hero-sub">
+          We built 8 purpose-driven tools that help the BDO team handle compliance,
+          allocations, nexus tracking, document review, and tax forecasting — all in one place.
+        </p>
+        <div class="hero-metrics">
+          <div class="hero-metric">
+            <div class="hm-val" style="color:#818cf8;" data-count="8">0</div>
+            <div class="hm-lab">Projects</div>
+          </div>
+          <div class="hero-metric">
+            <div class="hm-val" style="color:#34d399;" data-count="50">0</div>
+            <div class="hm-lab">IRC Sections</div>
+          </div>
+          <div class="hero-metric">
+            <div class="hm-val" style="color:#f472b6;" data-count="12">0</div>
+            <div class="hm-lab">AI Models</div>
+          </div>
+          <div class="hero-metric">
+            <div class="hm-val" style="color:#fbbf24;" data-count="97">0</div>
+            <div class="hm-lab">Accuracy %</div>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="project6-ai-research/index.html" class="btn-glow"><i data-lucide="bot"
+              style="width:18px;height:18px;"></i> Ask the AI Assistant</a>
+          <a href="#projects" class="btn-ghost"><i data-lucide="arrow-down" style="width:16px;height:16px;"></i> See all
+            projects</a>
+        </div>
       </div>
+      <div class="scroll-hint"><span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
 
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="number" data-count="5">0</div>
-          <div class="label">Interactive Projects</div>
+    <!-- ===== COMMAND CENTER ===== -->
+    <section class="section container" id="command-center">
+      <div class="section-header animate-fade-in-up">
+        <div class="section-divider"></div>
+        <h2>How's the platform <span class="gradient-text">doing?</span></h2>
+        <p>A quick snapshot of everything happening across the 8 projects right now.</p>
+      </div>
+      <div class="cmd-grid animate-fade-in-up delay-1">
+        <div class="cmd-tile glass-card">
+          <span class="ct-icon"><i data-lucide="shield-check" style="width:28px;height:28px;color:#34d399;"></i></span>
+          <div class="ct-val" style="color:#34d399;">Low</div>
+          <div class="ct-lab">Risk Level</div>
         </div>
-        <div class="hero-stat">
-          <div class="number" data-count="50">0</div>
-          <div class="label">US States Covered</div>
+        <div class="cmd-tile glass-card">
+          <span class="ct-icon"><i data-lucide="file-text" style="width:28px;height:28px;color:#60a5fa;"></i></span>
+          <div class="ct-val" style="color:#60a5fa;" data-count="142">0</div>
+          <div class="ct-lab">Docs Analyzed</div>
         </div>
-        <div class="hero-stat">
-          <div class="number" data-count="15">0</div>
-          <div class="label">IRS Forms Analyzed</div>
+        <div class="cmd-tile glass-card">
+          <span class="ct-icon"><i data-lucide="message-circle"
+              style="width:28px;height:28px;color:#a78bfa;"></i></span>
+          <div class="ct-val" style="color:#a78bfa;" data-count="1247">0</div>
+          <div class="ct-lab">AI Queries</div>
         </div>
-        <div class="hero-stat">
-          <div class="number" data-count="100">0</div>
-          <div class="label">% Web-Based</div>
+        <div class="cmd-tile glass-card">
+          <span class="ct-icon"><i data-lucide="trending-up" style="width:28px;height:28px;color:#fbbf24;"></i></span>
+          <div class="ct-val" style="color:#fbbf24;">$2.4M</div>
+          <div class="ct-lab">Forecasted</div>
+        </div>
+        <div class="cmd-tile glass-card">
+          <span class="ct-icon"><i data-lucide="map-pin" style="width:28px;height:28px;color:#34d399;"></i></span>
+          <div class="ct-val" style="color:#34d399;" data-count="12">0</div>
+          <div class="ct-lab">States Tracked</div>
+        </div>
+        <div class="cmd-tile glass-card">
+          <span class="ct-icon"><i data-lucide="check-circle" style="width:28px;height:28px;color:#60a5fa;"></i></span>
+          <div class="ct-val" style="color:#60a5fa;" data-count="98">0</div>
+          <div class="ct-lab">Compliance %</div>
         </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- ===== PROJECTS ===== -->
     <section class="section container" id="projects">
-      <div class="section-header" style="text-align:center;">
-        <h2>Featured <span class="gradient-text">Projects</span></h2>
-        <p style="margin:0 auto;">Each project demonstrates practical knowledge essential for US partnership taxation in the LLP team.</p>
+      <div class="section-header animate-fade-in-up">
+        <div class="section-divider"></div>
+        <h2>Everything we <span class="gradient-text">built</span></h2>
+        <p>Each project tackles a real challenge BDO's LLP team deals with every day.</p>
       </div>
-
-      <div class="project-grid">
-        <!-- Project 1 -->
-        <div class="project-card glass-card scroll-reveal">
-          <div class="card-number">01</div>
-          <span class="card-icon">🛡️</span>
-          <h3>US LLP Tax Compliance Dashboard</h3>
-          <p>Interactive dashboard tracking all IRS compliance requirements for US LLPs – filing obligations, penalties, deadlines, and status monitoring with real-time progress tracking.</p>
-          <div class="tags">
-            <span class="tag">Form 1065</span>
-            <span class="tag">IRS Compliance</span>
-            <span class="tag">Penalties</span>
-            <span class="tag">Deadlines</span>
+      <div class="proj-grid animate-fade-in-up delay-1">
+        <a href="project1-compliance/index.html" class="proj-card glass-card">
+          <div class="proj-top" style="background:linear-gradient(90deg,#10b981,#06b6d4);"></div>
+          <div class="proj-body">
+            <span class="proj-badge" style="background:rgba(16,185,129,0.1);color:#34d399;">Project 1</span>
+            <span class="proj-emoji"><i data-lucide="shield" style="width:32px;height:32px;color:#34d399;"></i></span>
+            <h3>Compliance Dashboard</h3>
+            <p class="proj-desc">Tracks every IRS filing deadline, flags risks before they become penalties, and keeps
+              the team audit-ready year round.</p>
+            <div class="proj-tags"><span class="ptag ptag-blue">IRS Filing</span><span
+                class="ptag ptag-blue">Deadlines</span><span class="ptag ptag-purple">Risk Scoring</span></div>
           </div>
-          <a href="project1-compliance/index.html" class="card-link">Open Project →</a>
+        </a>
+        <a href="project2-form1065/index.html" class="proj-card glass-card">
+          <div class="proj-top" style="background:linear-gradient(90deg,#06b6d4,#3b82f6);"></div>
+          <div class="proj-body">
+            <span class="proj-badge" style="background:rgba(6,182,212,0.1);color:#22d3ee;">Project 2</span>
+            <span class="proj-emoji"><i data-lucide="clipboard-list"
+                style="width:32px;height:32px;color:#22d3ee;"></i></span>
+            <h3>Form 1065 & K-1 Analyzer</h3>
+            <p class="proj-desc">Generates K-1 allocations automatically, runs 24 cross-checks, and catches the errors
+              humans usually miss.</p>
+            <div class="proj-tags"><span class="ptag ptag-blue">Schedule K-1</span><span class="ptag ptag-purple">AI
+                Validation</span></div>
+          </div>
+        </a>
+        <a href="project3-nexus/index.html" class="proj-card glass-card">
+          <div class="proj-top" style="background:linear-gradient(90deg,#10b981,#059669);"></div>
+          <div class="proj-body">
+            <span class="proj-badge" style="background:rgba(16,185,129,0.1);color:#34d399;">Project 3</span>
+            <span class="proj-emoji"><i data-lucide="globe" style="width:32px;height:32px;color:#34d399;"></i></span>
+            <h3>Multi-State Nexus Tracker</h3>
+            <p class="proj-desc">Monitors economic nexus thresholds across all 50 states, flags Wayfair exposure, and
+              recommends PTE elections.</p>
+            <div class="proj-tags"><span class="ptag ptag-blue">50 States</span><span class="ptag ptag-purple">Nexus
+                AI</span></div>
+          </div>
+        </a>
+        <a href="project4-allocation/index.html" class="proj-card glass-card">
+          <div class="proj-top" style="background:linear-gradient(90deg,#f59e0b,#f43f5e);"></div>
+          <div class="proj-body">
+            <span class="proj-badge" style="background:rgba(245,158,11,0.1);color:#fbbf24;">Project 4</span>
+            <span class="proj-emoji"><i data-lucide="calculator"
+                style="width:32px;height:32px;color:#fbbf24;"></i></span>
+            <h3>Income Allocation Calculator</h3>
+            <p class="proj-desc">Handles waterfall allocations, validates §704(b) substantial economic effect, and
+              optimizes distributions.</p>
+            <div class="proj-tags"><span class="ptag ptag-blue">§704(b)</span><span class="ptag ptag-purple">Allocation
+                AI</span></div>
+          </div>
+        </a>
+        <a href="project5-workflow/index.html" class="proj-card glass-card">
+          <div class="proj-top" style="background:linear-gradient(90deg,#8b5cf6,#f43f5e);"></div>
+          <div class="proj-body">
+            <span class="proj-badge" style="background:rgba(139,92,246,0.1);color:#a78bfa;">Project 5</span>
+            <span class="proj-emoji"><i data-lucide="kanban" style="width:32px;height:32px;color:#a78bfa;"></i></span>
+            <h3>Workflow & Deadline Manager</h3>
+            <p class="proj-desc">Kanban board for the full filing lifecycle — smart task assignments, workload
+              balancing, and burnout alerts built in.</p>
+            <div class="proj-tags"><span class="ptag ptag-blue">Kanban</span><span class="ptag ptag-purple">Workload
+                AI</span></div>
+          </div>
+        </a>
+        <a href="project6-ai-research/index.html" class="proj-card glass-card">
+          <div class="proj-top" style="background:linear-gradient(90deg,#6366f1,#8b5cf6);"></div>
+          <div class="proj-body">
+            <span class="proj-badge" style="background:rgba(99,102,241,0.1);color:#818cf8;">Project 6</span>
+            <span class="proj-emoji"><i data-lucide="bot" style="width:32px;height:32px;color:#818cf8;"></i></span>
+            <h3>AI Tax Research Assistant</h3>
+            <p class="proj-desc">Ask it anything about Subchapter K — it answers with IRC citations, BDO practice tips,
+              and plain-English explanations.</p>
+            <div class="proj-tags"><span class="ptag ptag-new">NEW</span><span class="ptag ptag-blue">IRC
+                §§701-777</span><span class="ptag ptag-purple">Chat AI</span></div>
+          </div>
+        </a>
+        <a href="project7-doc-analyzer/index.html" class="proj-card glass-card">
+          <div class="proj-top" style="background:linear-gradient(90deg,#06b6d4,#10b981);"></div>
+          <div class="proj-body">
+            <span class="proj-badge" style="background:rgba(6,182,212,0.1);color:#22d3ee;">Project 7</span>
+            <span class="proj-emoji"><i data-lucide="scan-text"
+                style="width:32px;height:32px;color:#22d3ee;"></i></span>
+            <h3>Document Analyzer</h3>
+            <p class="proj-desc">Drop a K-1, 1065, or 1099 — it extracts every field, scores confidence, and flags
+              anything that looks off.</p>
+            <div class="proj-tags"><span class="ptag ptag-new">NEW</span><span class="ptag ptag-blue">OCR &
+                NLP</span><span class="ptag ptag-purple">Anomaly AI</span></div>
+          </div>
+        </a>
+        <a href="project8-predictor/index.html" class="proj-card glass-card">
+          <div class="proj-top" style="background:linear-gradient(90deg,#f59e0b,#ef4444);"></div>
+          <div class="proj-body">
+            <span class="proj-badge" style="background:rgba(245,158,11,0.1);color:#fbbf24;">Project 8</span>
+            <span class="proj-emoji"><i data-lucide="line-chart"
+                style="width:32px;height:32px;color:#fbbf24;"></i></span>
+            <h3>Tax Liability Predictor</h3>
+            <p class="proj-desc">Forecasts tax liability, runs what-if scenarios, and suggests 12 optimization
+              strategies to lower the bill.</p>
+            <div class="proj-tags"><span class="ptag ptag-new">NEW</span><span
+                class="ptag ptag-blue">Forecasting</span><span class="ptag ptag-purple">ML Engine</span></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== TECHNOLOGY ===== -->
+    <section class="section container" style="display:none;">
+      <div class="section-header animate-fade-in-up">
+        <div class="section-divider"></div>
+        <h2>What powers <span class="gradient-text">all of this</span></h2>
+        <p>The tech behind each project — no frameworks, no bloat, just focused engineering.</p>
+      </div>
+      <div class="tech-row animate-fade-in-up delay-1">
+        <div class="tech-pill"><i data-lucide="brain" style="width:14px;height:14px;"></i> NLP Engine</div>
+        <div class="tech-pill"><i data-lucide="bar-chart-3" style="width:14px;height:14px;"></i> Chart.js</div>
+        <div class="tech-pill"><i data-lucide="bot" style="width:14px;height:14px;"></i> AI Simulation</div>
+        <div class="tech-pill"><i data-lucide="scan" style="width:14px;height:14px;"></i> OCR Parser</div>
+        <div class="tech-pill"><i data-lucide="code-2" style="width:14px;height:14px;"></i> Vanilla JS</div>
+        <div class="tech-pill"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> CSS3 Animations</div>
+        <div class="tech-pill"><i data-lucide="smartphone" style="width:14px;height:14px;"></i> Responsive</div>
+        <div class="tech-pill"><i data-lucide="book-open" style="width:14px;height:14px;"></i> IRC Knowledge Base</div>
+        <div class="tech-pill"><i data-lucide="trending-up" style="width:14px;height:14px;"></i> ML Forecasting</div>
+        <div class="tech-pill"><i data-lucide="map" style="width:14px;height:14px;"></i> Multi-State Engine</div>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="section container" id="skills">
+      <div class="section-header animate-fade-in-up">
+        <div class="section-divider"></div>
+        <h2>What I'm <span class="gradient-text">good at</span></h2>
+      </div>
+      <div class="skill-row animate-fade-in-up delay-1" id="skillsGrid">
+        <div class="skill-item glass-card">
+          <div class="sk-head"><span class="sk-name">US Partnership Taxation (Subchapter K)</span><span
+              class="sk-pct">95%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-width="95" style="width:0;background:linear-gradient(90deg,#6366f1,#818cf8);">
+            </div>
+          </div>
         </div>
-
-        <!-- Project 2 -->
-        <div class="project-card glass-card scroll-reveal">
-          <div class="card-number">02</div>
-          <span class="card-icon">📋</span>
-          <h3>Form 1065 & Schedule K-1 Analyzer</h3>
-          <p>Input partnership financials and auto-generate Schedule K-1 allocations for each partner – covering ordinary income, rental income, interest, dividends, and capital gains.</p>
-          <div class="tags">
-            <span class="tag">Form 1065</span>
-            <span class="tag">Schedule K-1</span>
-            <span class="tag">Partner Allocations</span>
+        <div class="skill-item glass-card">
+          <div class="sk-head"><span class="sk-name">AI & Machine Learning Integration</span><span
+              class="sk-pct">92%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-width="92" style="width:0;background:linear-gradient(90deg,#8b5cf6,#c084fc);">
+            </div>
           </div>
-          <a href="project2-form1065/index.html" class="card-link">Open Project →</a>
         </div>
-
-        <!-- Project 3 -->
-        <div class="project-card glass-card scroll-reveal">
-          <div class="card-number">03</div>
-          <span class="card-icon">🗺️</span>
-          <h3>Multi-State Tax Nexus Tracker</h3>
-          <p>Interactive US map to identify state nexus obligations for LLPs. Toggle states to view filing requirements, income apportionment rules, due dates, and estimated tax rates.</p>
-          <div class="tags">
-            <span class="tag">State Nexus</span>
-            <span class="tag">Apportionment</span>
-            <span class="tag">Multi-State</span>
+        <div class="skill-item glass-card">
+          <div class="sk-head"><span class="sk-name">IRS Compliance & Form 1065</span><span class="sk-pct">94%</span>
           </div>
-          <a href="project3-nexus/index.html" class="card-link">Open Project →</a>
+          <div class="sk-track">
+            <div class="sk-fill" data-width="94" style="width:0;background:linear-gradient(90deg,#10b981,#34d399);">
+            </div>
+          </div>
         </div>
-
-        <!-- Project 4 -->
-        <div class="project-card glass-card scroll-reveal">
-          <div class="card-number">04</div>
-          <span class="card-icon">📐</span>
-          <h3>Partnership Income Allocation Calculator</h3>
-          <p>Calculate and visualize how partnership income, deductions, credits, and distributions are allocated among partners based on configurable profit/loss sharing ratios.</p>
-          <div class="tags">
-            <span class="tag">Income Allocation</span>
-            <span class="tag">Profit Sharing</span>
-            <span class="tag">Guaranteed Payments</span>
+        <div class="skill-item glass-card">
+          <div class="sk-head"><span class="sk-name">Multi-State Nexus Analysis</span><span class="sk-pct">90%</span>
           </div>
-          <a href="project4-allocation/index.html" class="card-link">Open Project →</a>
+          <div class="sk-track">
+            <div class="sk-fill" data-width="90" style="width:0;background:linear-gradient(90deg,#f59e0b,#fbbf24);">
+            </div>
+          </div>
         </div>
-
-        <!-- Project 5 -->
-        <div class="project-card glass-card scroll-reveal">
-          <div class="card-number">05</div>
-          <span class="card-icon">📅</span>
-          <h3>Tax Filing Workflow & Deadline Manager</h3>
-          <p>Kanban-style workflow board for managing the complete tax filing lifecycle with an integrated tax calendar showing all federal and state deadlines for TY 2025.</p>
-          <div class="tags">
-            <span class="tag">Workflow</span>
-            <span class="tag">Kanban</span>
-            <span class="tag">Tax Calendar</span>
-            <span class="tag">Deadlines</span>
+        <div class="skill-item glass-card">
+          <div class="sk-head"><span class="sk-name">Front-End Development</span><span class="sk-pct">97%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-width="97" style="width:0;background:linear-gradient(90deg,#06b6d4,#22d3ee);">
+            </div>
           </div>
-          <a href="project5-workflow/index.html" class="card-link">Open Project →</a>
+        </div>
+        <div class="skill-item glass-card">
+          <div class="sk-head"><span class="sk-name">Data Visualization & Analytics</span><span
+              class="sk-pct">88%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-width="88" style="width:0;background:linear-gradient(90deg,#f43f5e,#fb7185);">
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="section container" id="skills">
-      <div class="section-header" style="text-align:center;">
-        <h2>Core <span class="gradient-text">Competencies</span></h2>
-        <p style="margin:0 auto;">Key skills demonstrated across all five projects.</p>
+    <!-- ===== ABOUT ===== -->
+    <section class="section container">
+      <div class="section-header animate-fade-in-up">
+        <div class="section-divider"></div>
+        <h2>Who's <span class="gradient-text">behind this</span></h2>
       </div>
-
-      <div class="grid-3">
-        <div class="skill-item glass-card scroll-reveal">
-          <div class="skill-icon" style="background:rgba(59,130,246,0.15);">📑</div>
-          <div class="skill-info">
-            <h4>Partnership Taxation (IRC Subchapter K)</h4>
-            <p>Form 1065, Schedule K-1, partner basis, special allocations</p>
+      <div class="about-card glass-card animate-fade-in-up delay-1">
+        <div class="about-avatar"><i data-lucide="user" style="width:36px;height:36px;color:#fff;"></i></div>
+        <h3 style="font-size:1.3rem;margin-bottom:6px;">US Tax Associate (Ayush)</h3>
+        <p style="color:#818cf8;font-weight:600;font-size:0.9rem;margin-bottom:16px;">BDO RISE – LLP Team</p>
+        <p
+          style="color:var(--text-secondary);line-height:1.7;font-size:0.88rem;max-width:540px;margin:0 auto;position:relative;z-index:1;">
+          I work at the intersection of US partnership tax law and modern software. Every project here
+          was built to solve a real problem my team faces — from chasing deadlines to untangling §704(c) allocations.
+        </p>
+        <div class="about-stats">
+          <div class="about-stat glass-card">
+            <div class="as-val" style="color:#818cf8;">8</div>
+            <div class="as-lab">Projects</div>
           </div>
-        </div>
-        <div class="skill-item glass-card scroll-reveal">
-          <div class="skill-icon" style="background:rgba(16,185,129,0.15);">🏛️</div>
-          <div class="skill-info">
-            <h4>IRS Compliance & Regulations</h4>
-            <p>Filing deadlines, estimated taxes, penalty provisions</p>
+          <div class="about-stat glass-card">
+            <div class="as-val" style="color:#34d399;">5K+</div>
+            <div class="as-lab">Lines</div>
           </div>
-        </div>
-        <div class="skill-item glass-card scroll-reveal">
-          <div class="skill-icon" style="background:rgba(6,182,212,0.15);">🗺️</div>
-          <div class="skill-info">
-            <h4>Multi-State Tax Nexus</h4>
-            <p>State nexus rules, apportionment, withholding requirements</p>
+          <div class="about-stat glass-card">
+            <div class="as-val" style="color:#a78bfa;">3</div>
+            <div class="as-lab">AI Engines</div>
           </div>
-        </div>
-        <div class="skill-item glass-card scroll-reveal">
-          <div class="skill-icon" style="background:rgba(245,158,11,0.15);">📊</div>
-          <div class="skill-info">
-            <h4>Income Allocation & Distribution</h4>
-            <p>Profit/loss ratios, guaranteed payments, §704(b) allocations</p>
-          </div>
-        </div>
-        <div class="skill-item glass-card scroll-reveal">
-          <div class="skill-icon" style="background:rgba(139,92,246,0.15);">⚙️</div>
-          <div class="skill-info">
-            <h4>Tax Workflow Management</h4>
-            <p>Document tracking, filing lifecycle, deadline management</p>
-          </div>
-        </div>
-        <div class="skill-item glass-card scroll-reveal">
-          <div class="skill-icon" style="background:rgba(244,63,94,0.15);">💻</div>
-          <div class="skill-info">
-            <h4>Data Analysis & Visualization</h4>
-            <p>Tax data modeling, interactive dashboards, reporting</p>
+          <div class="about-stat glass-card">
+            <div class="as-val" style="color:#fbbf24;">12+</div>
+            <div class="as-lab">IRC §§</div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-pro">
     <div class="container">
-      <p>Built with dedication by <span class="brand">Tax Associate</span> | BDO RISE – LLP Team, US Taxation | B.Com (Hons)</p>
-      <p style="margin-top:8px;font-size:0.78rem;color:var(--text-muted);">Designed to demonstrate readiness for Day 1 and beyond.</p>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="fb-title">Tax<span>AI</span> Platform</div>
+          <p class="fb-desc">AI-powered tax intelligence for US partnerships. Built to demonstrate expertise in
+            Subchapter K, compliance, and modern AI.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Core Projects</h4>
+          <a href="project1-compliance/index.html">Compliance</a>
+          <a href="project2-form1065/index.html">Form 1065</a>
+          <a href="project3-nexus/index.html">Nexus Tracker</a>
+          <a href="project4-allocation/index.html">Allocation</a>
+          <a href="project5-workflow/index.html">Workflow</a>
+        </div>
+        <div class="footer-col">
+          <h4>AI Projects</h4>
+          <a href="project6-ai-research/index.html">AI Research</a>
+          <a href="project7-doc-analyzer/index.html">Doc Analyzer</a>
+          <a href="project8-predictor/index.html">Predictor</a>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="#command-center">Command Center</a>
+          <a href="#projects">All Projects</a>
+          <a href="#skills">Skills</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 AI Tax Intelligence Platform · BDO RISE – LLP Team · Built with ⚡ by Tax Associate (Ayush)
+      </div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="js/app.js"></script>
   <script>
-    // Animate hero counters
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('[data-count]').forEach(el => {
-        const target = parseInt(el.dataset.count);
-        animateCounter(el, target, 2000);
-      });
-    });
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+  <script>
+    (function () {
+      'use strict';
+      // === NEURAL NETWORK CANVAS ===
+      const canvas = document.getElementById('neuralCanvas');
+      const ctx = canvas.getContext('2d');
+      let nodes = [], w, h;
+      function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; initNodes(); }
+      function initNodes() {
+        nodes = [];
+        const count = Math.min(60, Math.floor(w * h / 18000));
+        for (let i = 0; i < count; i++) nodes.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4, r: Math.random() * 2 + 1 });
+      }
+      function drawNet() {
+        ctx.clearRect(0, 0, w, h);
+        nodes.forEach(n => {
+          n.x += n.vx; n.y += n.vy;
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(99,102,241,0.5)'; ctx.fill();
+        });
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 160) {
+              ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.strokeStyle = `rgba(99,102,241,${0.12 * (1 - dist / 160)})`; ctx.lineWidth = 0.6; ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(drawNet);
+      }
+      resize(); window.addEventListener('resize', resize); drawNet();
+
+      // === MOUSE GLOW ===
+      const glow = document.getElementById('mouseGlow');
+      document.addEventListener('mousemove', e => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; });
+
+      // === COUNTER ANIMATION ===
+      function animateCounters() {
+        document.querySelectorAll('[data-count]').forEach(el => {
+          if (el.dataset.animated) return;
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.9) {
+            el.dataset.animated = '1';
+            const target = parseInt(el.dataset.count);
+            const suffix = el.textContent.includes('%') ? '%' : el.textContent.includes('+') ? '+' : '';
+            const dur = 1600;
+            const start = performance.now();
+            function step(now) {
+              const p = Math.min((now - start) / dur, 1);
+              const ease = 1 - Math.pow(1 - p, 4);
+              el.textContent = Math.floor(target * ease) + (target >= 50 && suffix === '' ? '+' : suffix);
+              if (p < 1) requestAnimationFrame(step);
+              else el.textContent = target + (target >= 50 && suffix === '' ? '+' : suffix);
+            }
+            requestAnimationFrame(step);
+          }
+        });
+      }
+
+      // === SKILL BAR ANIMATION ===
+      function animateSkills() {
+        document.querySelectorAll('.sk-fill').forEach(bar => {
+          if (bar.dataset.animated) return;
+          const rect = bar.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.9) {
+            bar.dataset.animated = '1';
+            setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200);
+          }
+        });
+      }
+
+      window.addEventListener('scroll', () => { animateCounters(); animateSkills(); });
+      setTimeout(() => { animateCounters(); animateSkills(); }, 500);
+    })();
   </script>
 </body>
+
 </html>

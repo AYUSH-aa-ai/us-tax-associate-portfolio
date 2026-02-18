@@ -1,0 +1,451 @@
+/* ==========================================
+   Project 8: Predictive Tax Liability Engine
+   ========================================== */
+
+/* Predictor Layout */
+.predictor-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+}
+
+/* Input Panel */
+.input-panel {
+    padding: 24px;
+}
+
+.input-panel h3 {
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-section {
+    margin-bottom: 20px;
+}
+
+.input-section h4 {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.input-row label {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    min-width: 100px;
+    flex-shrink: 0;
+}
+
+.input-row input {
+    flex: 1;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.88rem;
+}
+
+.input-row input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.predict-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--gradient-main);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.predict-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+}
+
+/* Results Panel */
+.results-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Risk Gauge */
+.risk-gauge-container {
+    padding: 28px;
+    text-align: center;
+}
+
+.risk-gauge {
+    width: 200px;
+    height: 100px;
+    margin: 0 auto 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.risk-gauge svg {
+    width: 200px;
+    height: 120px;
+}
+
+.risk-gauge .gauge-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-width: 16;
+}
+
+.risk-gauge .gauge-fill {
+    fill: none;
+    stroke-width: 16;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.5s;
+}
+
+.risk-gauge .gauge-value {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+.risk-label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.risk-sublabel {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Forecast Cards */
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.forecast-card {
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.forecast-card .fc-icon {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.forecast-card .fc-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.forecast-card .fc-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.forecast-card .fc-change {
+    font-size: 0.72rem;
+    margin-top: 6px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.fc-change.up {
+    background: rgba(244, 63, 94, 0.15);
+    color: var(--accent-rose);
+}
+
+.fc-change.down {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-emerald);
+}
+
+.fc-change.neutral {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--accent-amber);
+}
+
+/* Optimization Panel */
+.optimization-panel {
+    padding: 24px;
+}
+
+.optimization-panel h3 {
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.opt-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.opt-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.opt-item.high {
+    border-left-color: var(--accent-emerald);
+}
+
+.opt-item.medium {
+    border-left-color: var(--accent-amber);
+}
+
+.opt-item.low {
+    border-left-color: var(--accent-blue);
+}
+
+.opt-item .opt-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.opt-item .opt-info h4 {
+    font-size: 0.88rem;
+    margin-bottom: 3px;
+}
+
+.opt-item .opt-info p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.opt-item .opt-savings {
+    margin-left: auto;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-emerald);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Quarterly Breakdown */
+.quarterly-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.quarter-card {
+    padding: 16px;
+    text-align: center;
+    position: relative;
+}
+
+.quarter-card .q-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.quarter-card .q-amount {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.quarter-card .q-due {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+}
+
+.quarter-card .q-status {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.q-status.paid {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-emerald);
+}
+
+.q-status.due {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--accent-amber);
+}
+
+.q-status.upcoming {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent-blue);
+}
+
+/* What-If Scenarios */
+.scenario-toggle {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.scenario-btn {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.scenario-btn:hover,
+.scenario-btn.active {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: var(--accent-blue);
+}
+
+.scenario-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.scenario-col {
+    padding: 20px;
+}
+
+.scenario-col h4 {
+    font-size: 0.88rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.scenario-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 0.85rem;
+}
+
+.scenario-row .label {
+    color: var(--text-secondary);
+}
+
+.scenario-row .value {
+    font-weight: 600;
+}
+
+.scenario-diff {
+    text-align: center;
+    padding-top: 16px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent-emerald);
+}
+
+/* Chart placeholder */
+.chart-area {
+    padding: 20px;
+    min-height: 200px;
+    position: relative;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 160px;
+    padding-top: 10px;
+}
+
+.chart-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+}
+
+.chart-bar {
+    width: 36px;
+    border-radius: 6px 6px 0 0;
+    transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.chart-bar:hover {
+    opacity: 0.8;
+}
+
+.chart-bar-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+    .predictor-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .quarterly-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .scenario-comparison {
+        grid-template-columns: 1fr;
+    }
+}

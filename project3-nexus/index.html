@@ -31,6 +31,7 @@
                 <a href="../project4-allocation/index.html">Allocation</a>
                 <a href="../project5-workflow/index.html">Workflow</a>
             </nav>
+            <button class="theme-toggle" aria-label="Toggle theme">??</button>
         </div>
     </header>
 
@@ -39,11 +40,10 @@
             <div class="page-header animate-fade-in-up">
                 <div class="subtitle-pill"
                     style="background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.2);color:var(--accent-emerald);">
-                    🗺️ Project 3 of 5</div>
+                    🗺️ Project 3 of 8 • <span style="color:var(--accent-purple)">AI Enhanced</span></div>
                 <h1>Multi-State Tax <span class="gradient-text">Nexus Tracker</span></h1>
-                <p class="page-desc">Identify state nexus obligations for US partnerships. Select states where the LLP
-                    has nexus to view filing requirements, income apportionment rules, due dates, and estimated tax
-                    rates.</p>
+                <p class="page-desc">AI-powered nexus analysis with predictive threshold monitoring, economic nexus
+                    alerts, and intelligent state selection for US partnerships.</p>
             </div>
         </section>
 
@@ -119,6 +119,54 @@
             </div>
         </section>
 
+        <!-- AI Nexus Prediction -->
+        <section class="section container">
+            <div class="section-header">
+                <h2>🤖 AI Nexus <span class="gradient-text">Prediction Engine</span></h2>
+                <p>Predictive analysis for economic nexus threshold monitoring.</p>
+            </div>
+            <div class="grid-3">
+                <div class="glass-card" style="padding:20px;text-align:center;">
+                    <div style="font-size:2rem;margin-bottom:8px;">🎯</div>
+                    <div style="font-size:1.8rem;font-weight:800;color:var(--accent-amber);">3</div>
+                    <div style="font-size:0.82rem;color:var(--text-muted);margin-top:4px;">States Nearing Threshold
+                    </div>
+                </div>
+                <div class="glass-card" style="padding:20px;text-align:center;">
+                    <div style="font-size:2rem;margin-bottom:8px;">📊</div>
+                    <div style="font-size:1.8rem;font-weight:800;color:var(--accent-emerald);">$100K</div>
+                    <div style="font-size:0.82rem;color:var(--text-muted);margin-top:4px;">Economic Nexus Threshold
+                    </div>
+                </div>
+                <div class="glass-card" style="padding:20px;text-align:center;">
+                    <div style="font-size:2rem;margin-bottom:8px;">⚡</div>
+                    <div style="font-size:1.8rem;font-weight:800;color:var(--accent-purple);">Real-Time</div>
+                    <div style="font-size:0.82rem;color:var(--text-muted);margin-top:4px;">Monitoring Status</div>
+                </div>
+            </div>
+            <div class="glass-card" style="padding:20px;margin-top:16px;">
+                <h4 style="margin-bottom:12px;">🔔 AI Nexus Alerts</h4>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div
+                        style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid var(--accent-amber);font-size:0.85rem;">
+                        🟡 <strong>Texas:</strong> Revenue at $87K of $500K threshold (18%) — approaching economic
+                        nexus. Project to exceed by Q3 2026.</div>
+                    <div
+                        style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid var(--accent-amber);font-size:0.85rem;">
+                        🟡 <strong>Illinois:</strong> 150 of 200 transaction threshold reached (75%) — economic nexus
+                        likely triggered within 60 days.</div>
+                    <div
+                        style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid var(--accent-rose);font-size:0.85rem;">
+                        🔴 <strong>Georgia:</strong> Revenue exceeds $100K threshold — economic nexus established. File
+                        state return immediately.</div>
+                    <div
+                        style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid var(--accent-blue);font-size:0.85rem;">
+                        🔵 AI monitoring 12 states for PTE election optimization opportunities per latest legislation
+                        updates.</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Key Concepts -->
         <section class="section container">
             <div class="section-header">
@@ -169,11 +217,13 @@
 
     <footer class="footer">
         <div class="container">
-            <p>Project 3 of 5 | <span class="brand">Multi-State Tax Nexus Tracker</span> | BDO RISE – LLP Team</p>
+            <p>Project 3 of 8 | <span class="brand">Multi-State Tax Nexus Tracker</span> | BDO RISE – LLP Team</p>
         </div>
     </footer>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="../js/app.js"></script>
+    <script>if(typeof lucide!=="undefined")lucide.createIcons();</script>
     <script src="script.js"></script>
 </body>
 

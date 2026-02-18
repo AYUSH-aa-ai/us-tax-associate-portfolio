@@ -68,6 +68,30 @@ function animateCounter(element, target, duration = 1500) {
     requestAnimationFrame(update);
 }
 
+// Theme Toggle
+function initTheme() {
+    const saved = localStorage.getItem('taxai-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = saved || (prefersDark ? 'dark' : 'light'); // default light
+    document.documentElement.setAttribute('data-theme', theme);
+    updateToggleIcons(theme);
+}
+
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('taxai-theme', next);
+    updateToggleIcons(next);
+}
+
+function updateToggleIcons(theme) {
+    document.querySelectorAll('.theme-toggle').forEach(btn => {
+        btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        btn.title = theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+    });
+}
+
 // Toast notification
 function showToast(message, type = 'info') {
     const colors = {
@@ -81,8 +105,8 @@ function showToast(message, type = 'info') {
     position: fixed; bottom: 24px; right: 24px; z-index: 9999;
     padding: 14px 24px; border-radius: 12px;
     background: var(--bg-secondary); color: var(--text-primary);
-    border: 1px solid ${colors[type]}; box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-    font-family: Inter, sans-serif; font-size: 0.9rem;
+    border: 1px solid ${colors[type]}; box-shadow: var(--shadow-lg);
+    font-family: var(--font-body), sans-serif; font-size: 0.9rem;
     animation: fadeInUp 0.4s ease-out;
     display: flex; align-items: center; gap: 8px;
   `;
@@ -98,6 +122,11 @@ function showToast(message, type = 'info') {
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
     initScrollAnimations();
     initTabs();
+    // Bind all theme toggle buttons
+    document.querySelectorAll('.theme-toggle').forEach(btn => {
+        btn.addEventListener('click', toggleTheme);
+    });
 });

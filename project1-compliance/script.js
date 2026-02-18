@@ -257,6 +257,85 @@
         });
     }
 
+    // ---- AI RISK ENGINE ----
+    function calculateAIRisk() {
+        let total = 0, completed = 0;
+        checklistData.forEach(cat => {
+            cat.items.forEach(item => { total++; if (item.checked) completed++; });
+        });
+
+        const completionRate = completed / total;
+        const pendingObligations = obligations.filter(o => o.status === 'pending').length;
+        const overdueObligations = obligations.filter(o => o.status === 'overdue').length;
+
+        // Risk calculation
+        let riskScore = 100;
+        riskScore -= completionRate * 40; // Completion reduces risk
+        riskScore += pendingObligations * 5;
+        riskScore += overdueObligations * 15;
+        if (completionRate < 0.3) riskScore += 15;
+        riskScore = Math.max(5, Math.min(95, Math.round(riskScore)));
+
+        let riskLabel, riskColor;
+        if (riskScore < 35) { riskLabel = '🟢 Low Risk'; riskColor = 'var(--accent-emerald)'; }
+        else if (riskScore < 65) { riskLabel = '🟡 Moderate Risk'; riskColor = 'var(--accent-amber)'; }
+        else { riskLabel = '🔴 High Risk'; riskColor = 'var(--accent-rose)'; }
+
+        const el = document.getElementById('aiRiskScore');
+        if (el) {
+            el.textContent = riskScore + '/100';
+            el.style.color = riskColor;
+            document.getElementById('aiRiskLabel').textContent = riskLabel;
+            document.getElementById('aiRiskBar').style.width = (100 - riskScore) + '%';
+        }
+
+        // Penalty prediction
+        const partnersCount = 5;
+        const pendingMonths = 2;
+        const penaltyExposure = pendingObligations * 220 * partnersCount * pendingMonths + overdueObligations * 310 * partnersCount;
+        const penaltyEl = document.getElementById('aiPenaltyRisk');
+        if (penaltyEl) {
+            penaltyEl.textContent = '$' + penaltyExposure.toLocaleString();
+        }
+
+        // Next deadline calculation
+        const now = new Date();
+        const upcomingDeadlines = deadlines.filter(d => new Date(d.date) > now);
+        if (upcomingDeadlines.length > 0) {
+            const next = upcomingDeadlines[0];
+            const daysUntil = Math.ceil((new Date(next.date) - now) / (1000 * 60 * 60 * 24));
+            const deadlineEl = document.getElementById('aiNextDeadline');
+            if (deadlineEl) {
+                deadlineEl.textContent = daysUntil;
+                document.getElementById('aiDeadlineName').textContent = next.title;
+            }
+        }
+
+        // Smart alerts
+        renderAIAlerts(riskScore, completionRate, pendingObligations, overdueObligations);
+    }
+
+    function renderAIAlerts(riskScore, completionRate, pending, overdue) {
+        const container = document.getElementById('aiAlerts');
+        if (!container) return;
+
+        const alerts = [];
+        if (overdue > 0) alerts.push({ icon: '🔴', severity: 'critical', text: `${overdue} filing(s) are overdue — immediate action required to avoid penalties under IRC §6698.` });
+        if (completionRate < 0.5) alerts.push({ icon: '🟡', severity: 'warning', text: `Only ${Math.round(completionRate * 100)}% of compliance checklist complete. Accelerate preparation to meet the March 15 deadline.` });
+        if (pending > 4) alerts.push({ icon: '🟡', severity: 'warning', text: `${pending} filings still pending. Consider filing Form 7004 for automatic 6-month extension.` });
+        if (riskScore > 60) alerts.push({ icon: '🔴', severity: 'critical', text: `Risk score is ${riskScore}/100 (High). Review and prioritize incomplete items immediately.` });
+        alerts.push({ icon: '🔵', severity: 'info', text: 'AI monitoring is active — risk score updates in real-time as you complete checklist items.' });
+        if (completionRate > 0.6) alerts.push({ icon: '🟢', severity: 'success', text: `Great progress! ${Math.round(completionRate * 100)}% complete. You are on track for timely filing.` });
+
+        const colors = { critical: 'var(--accent-rose)', warning: 'var(--accent-amber)', info: 'var(--accent-blue)', success: 'var(--accent-emerald)' };
+        container.innerHTML = alerts.map(a => `
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 16px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid ${colors[a.severity]};font-size:0.85rem;line-height:1.5;">
+                <span>${a.icon}</span>
+                <span>${a.text}</span>
+            </div>
+        `).join('');
+    }
+
     // ---- INIT ----
     document.addEventListener('DOMContentLoaded', () => {
         renderObligations();
@@ -264,6 +343,7 @@
         renderPenalties();
         renderChecklist();
         updateStats();
+        setTimeout(calculateAIRisk, 500);
     });
 
 })();

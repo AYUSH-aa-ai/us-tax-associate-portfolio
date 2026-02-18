@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Predictive Tax Liability Engine – ML-powered forecasting, risk scores, and optimization. BDO RISE LLP Team.">
+    <title>Predictive Tax Liability Engine | BDO RISE – LLP Team</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">📈</div>
+                <span>Tax<span style="color:var(--accent-blue)">Predictor</span></span>
+            </a>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../project6-ai-research/index.html">AI Research</a>
+                <a href="../project7-doc-analyzer/index.html">Doc AI</a>
+                <a href="../project4-allocation/index.html">Allocation</a>
+                <a href="../project5-workflow/index.html">Workflow</a>
+            </nav>
+            <button class="theme-toggle" aria-label="Toggle theme">??</button>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top:32px;padding-bottom:48px;">
+        <div class="section-header animate-fade-in-up" style="text-align:center;margin-bottom:32px;">
+            <h1>Predictive Tax Liability <span class="gradient-text">Engine</span></h1>
+            <p style="margin:0 auto;">AI-powered forecasting that predicts partner tax liabilities, generates risk
+                scores, and recommends optimization strategies — turning reactive tax preparation into proactive tax
+                planning.</p>
+        </div>
+
+        <!-- Predictor Layout -->
+        <div class="predictor-layout animate-fade-in-up delay-1">
+            <!-- Input Panel -->
+            <div class="input-panel glass-card">
+                <h3>📥 Partnership Data</h3>
+
+                <div class="input-section">
+                    <h4>Revenue & Income</h4>
+                    <div class="input-row">
+                        <label>Gross Income</label>
+                        <input type="number" id="income" value="800000" placeholder="800,000">
+                    </div>
+                    <div class="input-row">
+                        <label>Deductions</label>
+                        <input type="number" id="deductions" value="180000" placeholder="180,000">
+                    </div>
+                    <div class="input-row">
+                        <label>Capital Gains</label>
+                        <input type="number" id="capitalGains" value="50000" placeholder="50,000">
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h4>Partnership Info</h4>
+                    <div class="input-row">
+                        <label>State Rate %</label>
+                        <input type="number" id="stateRate" value="5" step="0.1" placeholder="5.0">
+                    </div>
+                    <div class="input-row">
+                        <label># Partners</label>
+                        <input type="number" id="partners" value="3" min="1" max="100" placeholder="3">
+                    </div>
+                </div>
+
+                <button class="predict-btn" onclick="runPrediction()">
+                    🤖 Run AI Prediction
+                </button>
+            </div>
+
+            <!-- Results Area -->
+            <div class="results-panel" id="resultsArea" style="display:none;">
+                <!-- Risk Gauge -->
+                <div class="risk-gauge-container glass-card">
+                    <h3 style="margin-bottom:16px;">⚡ AI Risk Assessment</h3>
+                    <div class="risk-gauge" id="riskGauge"></div>
+                    <div class="risk-label" id="riskLabel">Calculating...</div>
+                    <div class="risk-sublabel">Based on income level, deduction ratio, state exposure & complexity</div>
+                </div>
+
+                <!-- Forecast Grid -->
+                <div>
+                    <h3 style="margin-bottom:16px;">📊 Tax Liability Forecast</h3>
+                    <div class="forecast-grid" id="forecastGrid"></div>
+                </div>
+
+                <!-- Quarterly Estimates -->
+                <div>
+                    <h3 style="margin-bottom:16px;">📅 Quarterly Estimated Payments</h3>
+                    <div class="quarterly-grid" id="quarterlyGrid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trend Chart -->
+        <div style="margin-top:24px;" class="animate-fade-in-up delay-2">
+            <div class="glass-card chart-area">
+                <h3 style="margin-bottom:16px;">📈 5-Year Liability Trend (AI Predicted)</h3>
+                <div class="chart-bars" id="trendChart"></div>
+            </div>
+        </div>
+
+        <!-- Optimization Recommendations -->
+        <div style="margin-top:24px;" class="animate-fade-in-up delay-3">
+            <div class="optimization-panel glass-card">
+                <h3>💡 AI Optimization Recommendations</h3>
+                <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px;">Ranked by potential tax
+                    savings — click to explore each strategy</p>
+                <div id="optimizationList"></div>
+            </div>
+        </div>
+
+        <!-- What-If Scenarios -->
+        <div style="margin-top:24px;" class="animate-fade-in-up delay-4">
+            <div class="glass-card" style="padding:24px;">
+                <h3 style="margin-bottom:16px;">🔀 What-If Scenario Comparison</h3>
+                <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px;">See how optimization
+                    strategies impact your total tax liability</p>
+                <div id="scenarioContent"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Built with AI by <span class="brand">Tax Associate (Ayush)</span> | BDO RISE – LLP Team</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../js/app.js"></script>
+    <script>if(typeof lucide!=="undefined")lucide.createIcons();</script>
+    <script src="script.js"></script>
+</body>
+
+</html>
