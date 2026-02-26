@@ -1,7 +1,148 @@
 /* ==========================================
    Project 6: AI Tax Research Assistant
+   OpenRouter AI — Styles
    ========================================== */
 
+/* API Key Bar */
+.api-key-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.api-key-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.api-key-status {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+    transition: all 0.3s;
+}
+
+.api-key-status.connected {
+    background: #10b981;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+    animation: pulse 2s infinite;
+}
+
+.api-key-input {
+    flex: 1;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.api-key-input:focus {
+    border-color: var(--accent-purple);
+}
+
+.api-key-input::placeholder {
+    color: var(--text-muted);
+    font-family: inherit;
+}
+
+.api-key-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.model-select {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.8rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    max-width: 180px;
+}
+
+.model-select:focus {
+    border-color: var(--accent-blue);
+}
+
+.model-select option {
+    background: #1e1e2e;
+    color: #e0e0e0;
+}
+
+.api-key-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.api-key-btn.save:hover {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #10b981;
+}
+
+.api-key-btn.clear:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+/* New Chat Button */
+.new-chat-btn-wrap {
+    width: 100%;
+}
+
+.new-chat-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px dashed rgba(99, 102, 241, 0.25);
+    border-radius: var(--radius-md, 12px);
+    color: var(--accent-purple, #8b5cf6);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.new-chat-btn:hover {
+    background: rgba(99, 102, 241, 0.18);
+    border-color: rgba(99, 102, 241, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Chat Layout */
 .ai-chat-layout {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -233,6 +374,66 @@
     border-bottom-right-radius: 4px;
 }
 
+/* Streaming cursor */
+.streaming-content::after {
+    content: '▍';
+    animation: blink 0.8s infinite;
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Inline code in messages */
+.msg-content .inline-code {
+    background: rgba(139, 92, 246, 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85em;
+}
+
+.msg-content pre {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 12px 16px;
+    overflow-x: auto;
+    margin: 10px 0;
+}
+
+.msg-content pre code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85em;
+    color: var(--text-secondary);
+}
+
+.msg-content h3,
+.msg-content h4,
+.msg-content h5 {
+    font-weight: 700;
+}
+
+.msg-content ul,
+.msg-content ol {
+    list-style: disc;
+}
+
+.msg-content ol {
+    list-style: decimal;
+}
+
 .msg-content .citation {
     display: inline-block;
     margin-top: 10px;
@@ -265,6 +466,32 @@
 
 .chat-msg.user .msg-time {
     text-align: right;
+}
+
+/* Error Messages */
+.chat-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 12px;
+    color: #fca5a5;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+.chat-error svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #ef4444;
+}
+
+.chat-error a {
+    color: var(--accent-blue);
+    text-decoration: underline;
 }
 
 /* Typing Indicator */
@@ -357,6 +584,11 @@
     color: var(--text-muted);
 }
 
+.chat-input-area input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .send-btn {
     width: 46px;
     height: 46px;
@@ -372,9 +604,13 @@
     justify-content: center;
 }
 
-.send-btn:hover {
+.send-btn:hover:not(:disabled) {
     transform: scale(1.05);
     box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+}
+
+.send-btn:disabled {
+    cursor: not-allowed;
 }
 
 /* Stats Bar */
@@ -418,6 +654,7 @@
     margin-top: 2px;
 }
 
+/* Responsive */
 @media (max-width: 900px) {
     .ai-chat-layout {
         grid-template-columns: 1fr;
@@ -431,5 +668,38 @@
 
     .ai-sidebar>div {
         min-width: 250px;
+    }
+
+    .api-key-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .api-key-left {
+        width: 100%;
+    }
+
+    .api-key-actions {
+        justify-content: flex-end;
+    }
+
+    .model-select {
+        max-width: none;
+        flex: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .ai-stats-bar {
+        gap: 8px;
+    }
+
+    .ai-stat {
+        min-width: 80px !important;
+        padding: 10px !important;
+    }
+
+    .ai-stat .stat-val {
+        font-size: 1.1rem;
     }
 }

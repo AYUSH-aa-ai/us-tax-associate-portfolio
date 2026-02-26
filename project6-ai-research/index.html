@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="AI Tax Research Assistant – Conversational AI for IRC partnership tax questions. BDO RISE LLP Team.">
-    <title>AI Tax Research Assistant | BDO RISE – LLP Team</title>
+        content="AI Tax Research Assistant – Real conversational AI for IRC partnership & corporate tax questions, powered by OpenRouter.">
+    <title>AI Tax Research Assistant | Ayush</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -41,8 +41,34 @@
         <!-- Header -->
         <div class="section-header animate-fade-in-up" style="text-align:center;margin-bottom:32px;">
             <h1>Your tax research <span class="gradient-text">co-pilot</span></h1>
-            <p style="margin:0 auto;">Ask any US partnership tax question — it pulls from 12+ IRC sections,
-                Treasury Regulations, and BDO practice tips to give you clear, cited answers.</p>
+            <p style="margin:0 auto;">Ask any US partnership or corporate tax question — powered by real AI
+                via OpenRouter. Cites IRC sections, Treasury Regulations, and practical tips.</p>
+        </div>
+
+        <!-- API Key Bar -->
+        <div class="api-key-bar glass-card animate-fade-in-up delay-1">
+            <div class="api-key-left">
+                <div class="api-key-status" id="apiKeyStatus" title="No API key"></div>
+                <input type="password" id="apiKeyInput" class="api-key-input"
+                    placeholder="Paste your OpenRouter API key (sk-or-...)">
+            </div>
+            <div class="api-key-actions">
+                <select id="modelSelect" class="model-select" title="Choose AI model">
+                    <option value="google/gemini-2.0-flash-001">Gemini 2.0 Flash</option>
+                    <option value="google/gemini-2.5-flash-preview">Gemini 2.5 Flash</option>
+                    <option value="openai/gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                    <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
+                    <option value="anthropic/claude-3-haiku">Claude 3 Haiku</option>
+                    <option value="meta-llama/llama-3.1-8b-instruct:free">Llama 3.1 8B (Free)</option>
+                    <option value="deepseek/deepseek-chat">DeepSeek Chat</option>
+                </select>
+                <button id="apiKeySaveBtn" class="api-key-btn save" title="Save key">
+                    <i data-lucide="check" style="width:16px;height:16px;"></i>
+                </button>
+                <button id="apiKeyClearBtn" class="api-key-btn clear" title="Clear key">
+                    <i data-lucide="x" style="width:16px;height:16px;"></i>
+                </button>
+            </div>
         </div>
 
         <!-- Stats Bar -->
@@ -51,7 +77,7 @@
                 <div class="stat-icon" style="background:rgba(59,130,246,0.15);"><i data-lucide="brain"
                         style="width:20px;height:20px;color:#3b82f6;"></i></div>
                 <div class="stat-val" id="statSections">0</div>
-                <div class="stat-lbl">IRC Sections</div>
+                <div class="stat-lbl">IRC Topics</div>
             </div>
             <div class="ai-stat glass-card">
                 <div class="stat-icon" style="background:rgba(16,185,129,0.15);"><i data-lucide="message-circle"
@@ -60,16 +86,16 @@
                 <div class="stat-lbl">Queries Answered</div>
             </div>
             <div class="ai-stat glass-card">
-                <div class="stat-icon" style="background:rgba(139,92,246,0.15);"><i data-lucide="book-open"
+                <div class="stat-icon" style="background:rgba(139,92,246,0.15);"><i data-lucide="sparkles"
                         style="width:20px;height:20px;color:#8b5cf6;"></i></div>
-                <div class="stat-val">50+</div>
-                <div class="stat-lbl">Regulations</div>
+                <div class="stat-val">Live</div>
+                <div class="stat-lbl">AI Model</div>
             </div>
             <div class="ai-stat glass-card">
                 <div class="stat-icon" style="background:rgba(245,158,11,0.15);"><i data-lucide="zap"
                         style="width:20px;height:20px;color:#f59e0b;"></i></div>
-                <div class="stat-val">&lt;2s</div>
-                <div class="stat-lbl">Response Time</div>
+                <div class="stat-val">Stream</div>
+                <div class="stat-lbl">Response Mode</div>
             </div>
         </div>
 
@@ -81,9 +107,15 @@
                     <div class="model-avatar"><i data-lucide="bot" style="width:24px;height:24px;color:#818cf8;"></i>
                     </div>
                     <div class="model-info">
-                        <h4>TaxPro AI v2.0</h4>
-                        <p>Online & Ready</p>
+                        <h4>TaxPro AI</h4>
+                        <p>OpenRouter · Live</p>
                     </div>
+                </div>
+
+                <div class="new-chat-btn-wrap">
+                    <button class="new-chat-btn glass-card" onclick="newChat()">
+                        <i data-lucide="plus" style="width:16px;height:16px;"></i> New Chat
+                    </button>
                 </div>
 
                 <div class="quick-questions glass-card">
@@ -102,14 +134,14 @@
                 <div class="chat-header">
                     <h3><i data-lucide="message-square" style="width:18px;height:18px;"></i> Research Chat <span
                             class="ai-badge">AI POWERED</span></h3>
-                    <span style="font-size:0.8rem;color:var(--text-muted);">Partnership Tax · IRC Subchapter K</span>
+                    <span style="font-size:0.8rem;color:var(--text-muted);">Partnership Tax · Corporate Tax · IRC</span>
                 </div>
 
                 <div class="chat-messages" id="chatMessages"></div>
 
                 <div class="chat-input-area">
                     <input type="text" id="chatInput"
-                        placeholder="Ask anything about partnership tax... (e.g., 'How does §751 work?')">
+                        placeholder="Ask anything about partnership or corporate tax... (e.g., 'How does §751 work?')">
                     <button class="send-btn" id="sendBtn"><i data-lucide="send"
                             style="width:18px;height:18px;"></i></button>
                 </div>
@@ -119,7 +151,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>Built with AI by <span class="brand">Tax Associate (Ayush)</span> | BDO RISE – LLP Team</p>
+            <p>Built with AI by <span class="brand">Ayush</span></p>
         </div>
     </footer>
 
